@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sudoku</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="sudoku">
+                <div class="line" id="line1">
+                    <div class="group" id="group1">
+                        <input type="number" name="" id="1x1" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="1x2" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="1x3" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="2x1" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="2x2" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="2x3" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="3x1" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="3x2" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="3x3" class="elements pos9" min="1" max="9" value="">
+                    </div>
+
+                    <div class="group" id="group2">
+                        <input type="number" name="" id="1x4" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="1x5" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="1x6" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="2x4" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="2x5" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="2x6" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="3x4" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="3x5" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="3x6" class="elements pos9" min="1" max="9" value="">
+                    </div>                
+                    
+                    <div class="group" id="group3">
+                        <input type="number" name="" id="1x7" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="1x8" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="1x9" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="2x7" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="2x8" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="2x9" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="3x7" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="3x8" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="3x9" class="elements pos9" min="1" max="9" value="">
+                    </div>
+                </div>
+
+                <div class="line" id="line2">
+                    <div class="group" id="group4">
+                        <input type="number" name="" id="4x1" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="4x2" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="4x3" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="5x1" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="5x2" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="5x3" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="6x1" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="6x2" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="6x3" class="elements pos9" min="1" max="9" value="">
+                    </div>
+
+                    <div class="group" id="group5">
+                        <input type="number" name="" id="4x4" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="4x5" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="4x6" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="5x4" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="5x5" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="5x6" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="6x4" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="6x5" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="6x6" class="elements pos9" min="1" max="9" value="">
+                    </div>                
+                    
+                    <div class="group" id="group6">
+                        <input type="number" name="" id="4x7" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="4x8" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="4x9" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="5x7" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="5x8" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="5x9" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="6x7" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="6x8" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="6x9" class="elements pos9" min="1" max="9" value="">
+                    </div>
+                </div>
+
+                <div class="line" id="line3">
+                    <div class="group" id="group7">
+                        <input type="number" name="" id="7x1" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="7x2" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="7x3" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="8x1" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="8x2" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="8x3" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="9x1" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="9x2" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="9x3" class="elements pos9" min="1" max="9" value="">
+                    </div>
+
+                    <div class="group" id="group8">
+                        <input type="number" name="" id="7x4" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="7x5" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="7x6" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="8x4" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="8x5" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="8x6" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="9x4" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="9x5" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="9x6" class="elements pos9" min="1" max="9" value="">
+                    </div>                
+                    
+                    <div class="group" id="group9">
+                        <input type="number" name="" id="7x7" class="elements pos1" min="1" max="9" value="">
+                        <input type="number" name="" id="7x8" class="elements pos2" min="1" max="9" value="">
+                        <input type="number" name="" id="7x9" class="elements pos3" min="1" max="9" value="">
+
+                        <input type="number" name="" id="8x7" class="elements pos4" min="1" max="9" value="">
+                        <input type="number" name="" id="8x8" class="elements pos5" min="1" max="9" value="">
+                        <input type="number" name="" id="8x9" class="elements pos6" min="1" max="9" value="">
+
+                        <input type="number" name="" id="9x7" class="elements pos7" min="1" max="9" value="">
+                        <input type="number" name="" id="9x8" class="elements pos8" min="1" max="9" value="">
+                        <input type="number" name="" id="9x9" class="elements pos9" min="1" max="9" value="">
+                    </div>
+                </div>
+            </div> 
+
+            <div class="value">
+                <div id="num1" >
+                    <span>1</span>
+                </div>
+                
+                <div id="num2">
+                    <span>2</span>
+                </div>
+
+                <div id="num3">
+                    <span>3</span>
+                </div>
+
+                <div id="num4">
+                    <span>4</span>
+                </div>
+
+                <div id="num5">
+                    <span>5</span>
+                </div>
+
+                <div id="num6">
+                    <span>6</span>
+                </div>
+                
+                <div id="num7">
+                    <span>7</span>
+                </div>
+
+                <div id="num8">
+                    <span>8</span>
+                </div>
+                <div id="num9">
+                    <span>9</span>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
+<script src="sudoku.js"></script>

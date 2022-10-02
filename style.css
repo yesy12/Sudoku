@@ -1,0 +1,146 @@
+.container{
+    width: 100%;
+    height: 900px;
+
+    display: flex;
+    /* flex-wrap: wrap; */
+
+    background-color: white;
+}
+
+.sudoku{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    
+    width: 100%;
+}
+
+.value{
+    color:rgb(83, 82, 82);
+    font-weight: 900;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+
+}
+
+span{
+    padding: 12px;
+    font-size: 70px;
+    text-align: center;
+    justify-content: center;
+}
+
+#num1,#num2,#num3,#num4,#num5,#num6,#num7,#num8,#num9 {
+    border: 2px solid ;
+    margin-bottom: 10px;
+}
+
+
+.line{
+    height: 300px;
+    width: 80%;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* border:3px solid red; */
+}
+
+#line1,#line2{
+    border-bottom-style: none;
+}
+
+#line2,#line3{
+    border-top-style: none;
+}
+
+
+.group{
+    width: 33.1%;
+    height:  100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+#group1,#group2, #group4, #group5{
+    border-right:3px solid rgb(83, 82, 82);
+    border-bottom:3px solid rgb(83, 82, 82);
+}
+
+#group7,#group8{
+    border-right: 3px solid rgb(83, 82, 82);
+}
+
+
+#group3, #group6{
+    border-bottom: 3px solid rgb(83, 82, 82);
+}
+
+
+.bold{
+    font-weight: 900;
+}
+
+.exists{
+    border: 3px solid red;
+}
+
+.disable{
+    opacity: 0;
+}
+
+.elements{
+    width: 21.8%;
+    height: 30%;
+    
+    text-align: center;
+    font-size: 30px;
+}
+
+.red{
+    color:red;
+}
+
+.group :nth-child(1){
+    order:  1;
+}
+.group :nth-child(2){
+    order:  4;
+}
+.group :nth-child(3){
+    order:  7;
+}
+
+.group :nth-child(4){
+    order:  2;
+}
+.group :nth-child(5){
+    order:  5;
+}
+.group :nth-child(6){
+    order:  8;
+}
+
+.group :nth-child(7){
+    order:  3;
+}
+.group :nth-child(8){
+    order:  6;
+}
+.group :nth-child(9){
+    order:  9;
+}
