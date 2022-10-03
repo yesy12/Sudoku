@@ -32,37 +32,40 @@
 window.onload = () =>{
 
 
-    group1 = [[,"1x1"],[,"1x2"],[,"1x3"],    [,"1x4"],[,"1x5"],[,"1x6"],  [,"1x7"],[,"1x8"],[,"1x9"]];
-    group2 = [[,"2x1"],[,"2x2"],[,"2x3"],    [,"2x4"],[,"2x5"],[,"2x6"],  [,"2x7"],[,"2x8"],[,"2x9"]];
-    group3 = [[,"3x1"],[,"3x2"],[,"3x3"],    [,"3x4"],[,"3x5"],[,"3x6"],  [,"3x7"],[,"3x8"],[,"3x9"]];
+    group1 = [[,"1x1", false],[4,"1x2",true],[8,"1x3",true],    [2,"1x4",true],[,"1x5",false],[,"1x6",false],  [,"1x7",false],[,"1x8",false],[1,"1x9",true]];
+    group2 = [[1,"2x1",true],[,"2x2",false],[,"2x3",false],    [3,"2x4",true],[8,"2x5",true],[4,"2x6",true],  [7,"2x7",true],[2,"2x8",true],[6,"2x9",true]];
+    group3 = [[3,"3x1",true],[,"3x2",false],[,"3x3",false],    [7,"3x4",true],[,"3x5",false],[1,"3x6",true],  [9,"3x7",true],[4,"3x8",true],[8,"3x9",true]];
 
-    group4 = [[,"4x1"],[,"4x2"],[,"4x3"],    [,"4x4"],[,"4x5"],[,"4x6"],  [,"4x7"],[,"4x8"],[,"4x9"]];
-    group5 = [[,"5x1"],[,"5x2"],[,"5x3"],    [,"5x4"],[,"5x5"],[,"5x6"],  [,"5x7"],[,"5x8"],[,"5x9"]];
-    group6 = [[,"6x1"],[,"6x2"],[,"6x3"],    [,"6x4"],[,"6x5"],[,"6x6"],  [,"6x7"],[,"6x8"],[,"6x9"]];
+    group4 = [[,"4x1",false],[7,"4x2",true],[2,"4x3",true],    [6,"4x4",true],[4,"4x5",true],[5,"4x6",true],  [1,"4x7",true],[8,"4x8",true],[,"4x9",false]];
+    group5 = [[8,"5x1",true],[,"5x2",false],[,"5x3",false],    [,"5x4",false],[,"5x5",false],[2,"5x6",true],  [4,"5x7",true],[,"5x8",false],[,"5x9",false]];
+    group6 = [[,"6x1",false],[,"6x2",false],[,"6x3",false],    [,"6x4",false],[,"6x5",false],[,"6x6",false],  [,"6x7",false],[,"6x8",false],[7,"6x9",true]];
     
-    group7 = [[,"7x1"],[,"7x2"],[,"7x3"],    [,"7x4"],[,"7x5"],[,"7x6"],  [,"7x7"],[,"7x8"],[,"7x9"]];
-    group8 = [[,"8x1"],[,"8x2"],[,"8x3"],    [,"8x4"],[,"8x5"],[,"8x6"],  [,"8x7"],[,"8x8"],[,"8x9"]];
-    group9 = [[,"9x1"],[,"9x2"],[,"9x3"],    [,"9x4"],[,"9x5"],[,"9x6"],  [,"9x7"],[,"9x8"],[,"9x9"]];
+    group7 = [[,"7x1",false],[8,"7x2",true],[4,"7x3",true],    [,"7x4",false],[,"7x5",false],[,"7x6",false],  [3,"7x7",true],[,"7x8",false],[,"7x9",false]];
+    group8 = [[6,"8x1",true],[,"8x2",false],[,"8x3",false],    [4,"8x4",true],[1,"8x5",true],[,"8x6",false],  [,"8x7",false],[,"8x8",false],[2,"8x9",true]];
+    group9 = [[,"9x1",false],[,"9x2",false],[3,"9x3",true],    [,"9x4",false],[,"9x5",false],[,"9x6",false],  [,"9x7",false],[7,"9x8",true],[4,"9x9",true]];
 
-    sudoku = [group1,group2,group3,group4,group5,group6, group7,group8,group9];
+    sudoku = [group1,group2,group3, group4,group5,group6, group7,group8,group9];
     
     sudoku.forEach(group => {
         group.forEach(element =>{
+            console.log(element);
             let line_current = element[1].split("x")[0];
             let column_current = element[1].split("x")[1];
 
-            addOnLines(line_current,element[0]);
-            addOnColumn(column_current,element[0]);
-            addOnGroups(element[1],element[0] );
+            verifyDisable(element[[2]],element[1]);
 
-            addOnElement(`${element[1]}`, element[0]);
+            addOnLines(line_current,element[0]);
+            // addOnColumn(column_current,element[0]);
+            // addOnGroups(element[1],element[0] );
+
+            addOnElement(element[1], element[0]);
+
             
         })
     });
 
-    consoleColumns();
-    consoleLines();
-
+    // consoleColumns();
+    // consoleLines();
 
 
     let linesValues = [
@@ -83,18 +86,22 @@ window.onload = () =>{
        [group7Value,"group7"],[group8Value,"group8"],[group9Value,"group9"]
     ]
 
-    linesValues.forEach(line => {
-        verifyLines(line[0],line[1]);
-    });
+    // linesValues.forEach(line => {
+    //     verifyLines(line[0],line[1]);
+    // });
 
-    columnsValues.forEach(column =>{
-        verifyColumns(column[0],column[1]);
-    });
+    // columnsValues.forEach(column =>{
+    //     verifyColumns(column[0],column[1]);
+    // });
     
-    groupsValues.forEach(group =>{
-        verifyGroups(group[0],group[1]);
-    });
+    // groupsValues.forEach(group =>{
+    //     verifyGroups(group[0],group[1]);
+    // });
 
+}
+
+function verifyDisable(element_option, element_){
+    document.getElementById(element_).disabled = element_option;
 }
 
 function addOnColumn(column_value, element_){
@@ -191,6 +198,11 @@ function addOnGroups(group_value, element_){
     parent = document.getElementById(group_value).parentNode;
     groupId = parseInt(parent.id.split("group")[1]);
 
+    if(element_ == undefined){
+        element_ = 0;
+    }
+
+
     switch  (groupId){
 
         case 1:
@@ -226,7 +238,7 @@ function addOnGroups(group_value, element_){
 }
 
 function addOnElement(element,value_){
-    if(value_ != ""){
+    if(value_ != "" && value_ != undefined){
         document.getElementById(element).value = value_;
     }
 }
@@ -277,16 +289,20 @@ function verifyGroups(groupCurrentElement, groupValue){
     let exists = 0;
     let value = 0;
 
+    console.log(groupCurrentElement);
+
     for(i = 0; i < groupCurrentElement.length; i++){
         value = groupCurrentElement[i];
         exists = elements.includes(value);
+
+        // console.log(value)
         
         if(value != 0){
             if(!exists){
                 elements.push(value);
             }
             else{
-                console.log(`${exists}||${value}`);
+                // console.log(`${exists}||${value}`);
                 console.log(document.getElementById(groupValue).children[i].classList.add("red"));
             }
         }
