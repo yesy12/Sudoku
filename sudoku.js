@@ -1,13 +1,13 @@
 
-    let line1Value = "";
-    let line2Value = "";
-    let line3Value = "";
-    let line4Value = "";
-    let line5Value = "";
-    let line6Value = "";
-    let line7Value = "";
-    let line8Value = "";
-    let line9Value = "";
+    let line1Value = []
+    let line2Value = []
+    let line3Value = []
+    let line4Value = []
+    let line5Value = []
+    let line6Value = []
+    let line7Value = []
+    let line8Value = []
+    let line9Value = []
  
     let column1Value = "";
     let column2Value = "";
@@ -48,13 +48,12 @@ window.onload = () =>{
     
     sudoku.forEach(group => {
         group.forEach(element =>{
-            console.log(element);
             let line_current = element[1].split("x")[0];
             let column_current = element[1].split("x")[1];
 
             verifyDisable(element[[2]],element[1]);
 
-            addOnLines(line_current,element[0]);
+            addOnLines(element[0], element[1], element[2]);
             // addOnColumn(column_current,element[0]);
             // addOnGroups(element[1],element[0] );
 
@@ -69,9 +68,9 @@ window.onload = () =>{
 
 
     let linesValues = [
-        [line1Value,"1"],[line2Value,"2"],[line3Value,"3"],
-        [line4Value,"4"],[line5Value,"5"],[line6Value,"6"],
-        [line7Value,"7"],[line8Value,"8"],[line9Value,"9"]
+        [line1Value],[line2Value],[line3Value],
+        [line4Value],[line5Value],[line6Value],
+        [line7Value],[line8Value],[line9Value]
     ]
 
     let columnsValues = [
@@ -86,9 +85,10 @@ window.onload = () =>{
        [group7Value,"group7"],[group8Value,"group8"],[group9Value,"group9"]
     ]
 
-    // linesValues.forEach(line => {
-    //     verifyLines(line[0],line[1]);
-    // });
+    linesValues.forEach(line => {
+        // console.log(line[0])
+        verifyLines(line[0]) ;
+    });
 
     // columnsValues.forEach(column =>{
     //     verifyColumns(column[0],column[1]);
@@ -150,7 +150,9 @@ function addOnColumn(column_value, element_){
 
 }
 
-function addOnLines(line_value, element_){
+function addOnLines(element_, lineXColumn, element_option){
+    let line_value = lineXColumn.split("x")[0];
+    
     if(element_ == undefined){
         element_ = 0;
     }
@@ -158,33 +160,33 @@ function addOnLines(line_value, element_){
     switch  (line_value){
 
         case "1":
-            line1Value += `${element_}`;
+            line1Value.push([element_,lineXColumn,element_option]);
             break;
         case "2":
-            line2Value += `${element_}`;
+            line2Value.push([element_,lineXColumn,element_option]);
             break;
         case "3":
-            line3Value += `${element_}`;
+            line3Value.push([element_,lineXColumn,element_option]);
             break;
 
         case "4":
-            line4Value += `${element_}`;
+            line4Value.push([element_,lineXColumn,element_option]);
             break;
         case "5":
-            line5Value += `${element_}`;
+            line5Value.push([element_,lineXColumn,element_option]);
             break;
         case "6":
-            line6Value += `${element_}`;
+            line6Value.push([element_,lineXColumn,element_option]);
             break;
                 
         case "7":
-            line7Value += `${element_}`;
+            line7Value.push([element_,lineXColumn,element_option]);
             break;
         case "8":
-            line8Value += `${element_}`;
+            line8Value.push([element_,lineXColumn,element_option]);
             break;
         case "9":
-            line9Value += `${element_}`;
+            line9Value.push([element_,lineXColumn,element_option]);
             break;
 
     }
@@ -244,24 +246,30 @@ function addOnElement(element,value_){
 }
 
 
-function verifyLines(lineCurrentElement, lineValue){
+function verifyLines(paremetros){
     let elements = [];
     let exists = 0;
     let value;
+    let element_option;
 
-    for(i = 0; i < lineCurrentElement.length;i++){
-        value = lineCurrentElement[i];
-        exists = elements.includes(value);
+    let lineXColumn;
+
+    paremetros.forEach(parametro =>{
+        value = parametro[0];
+        lineXColumn = parametro[1];
+        element_option = parametro[2];
 
         if(value != 0){
-            if( !exists ){
-                elements.push(value);
-            }
+            if(element_option  == true){                
+                elements.push(parametro);
+            } 
             else{
-                document.getElementById(`${lineValue}x${i+1}`).classList.add("red");
-            }
+                document.getElementById(lineXColumn).classList.add("red");
+            }           
         }
-    }
+
+    })
+    
 }
 
 function verifyColumns(columnCurrentElement, columnValue){
