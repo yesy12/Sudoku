@@ -8,8 +8,8 @@ namespace Sudoku.Nodes {
         private HashSet<byte> usedNumbers;
         private int quantity;
 
-        public NodeCellsGroup(int quantity) {
-            this.quantity = quantity;
+        public NodeCellsGroup(int quantityCells) {
+            quantity = quantityCells;
             Cells = new NodeCell[quantity];
             usedNumbers = new HashSet<byte>();
 
@@ -18,12 +18,22 @@ namespace Sudoku.Nodes {
             }
         }
 
-        public void Add(byte number, int index) {
-            if (!usedNumbers.Contains(number)) {                 
-                Cells[index].Number = number;
-                usedNumbers.Add(number);
+        public void Add(NodeCell cell, int index) {
+            if (!usedNumbers.Contains(cell.Number)) {
+                Cells[index] = cell;
+                usedNumbers.Add(cell.Number);
             }
         }
+
+        public void ToString() {
+            for (int i = 0; i < quantity; i++) {
+                Console.Write($"{Cells[i].Number} | ");
+            }
+            Console.Write(usedNumbers.Sum(a => a));
+            Console.WriteLine();
+        }
+
+        
 
     }
 }
