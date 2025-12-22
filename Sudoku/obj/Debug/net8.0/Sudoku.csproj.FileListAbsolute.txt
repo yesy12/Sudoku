@@ -12,3 +12,4 @@ C:\Users\Alison\Documents\Projetos\C#\Sudoku\Sudoku\obj\Debug\net8.0\refint\Sudo
 C:\Users\Alison\Documents\Projetos\C#\Sudoku\Sudoku\obj\Debug\net8.0\Sudoku.pdb
 C:\Users\Alison\Documents\Projetos\C#\Sudoku\Sudoku\obj\Debug\net8.0\Sudoku.genruntimeconfig.cache
 C:\Users\Alison\Documents\Projetos\C#\Sudoku\Sudoku\obj\Debug\net8.0\ref\Sudoku.dll
+C:\Users\Alison\Documents\Projetos\C#\Sudoku\Sudoku\obj\Debug\net8.0\Sudoku.sourcelink.json

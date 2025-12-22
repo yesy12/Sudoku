@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Sudoku.Nodes {
     public class NodeCellsGroup {
         public NodeCell[] Cells;
@@ -25,6 +24,14 @@ namespace Sudoku.Nodes {
             }
         }
 
+        public void Remove(int index) {
+            if (Cells[index].Number != 0) {
+                usedNumbers.Remove(Cells[index].Number);
+                Cells[index] = new NodeCell(); 
+            }
+        }
+
+
         public void ToString() {
             for (int i = 0; i < quantity; i++) {
                 Console.Write($"{Cells[i].Number} | ");
@@ -32,8 +39,5 @@ namespace Sudoku.Nodes {
             Console.Write(usedNumbers.Sum(a => a));
             Console.WriteLine();
         }
-
-        
-
     }
 }

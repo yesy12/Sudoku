@@ -1,10 +1,11 @@
 ﻿using Sudoku.Nodes;
+using System;
 
 namespace Sudoku.Groups {
     public abstract class MultiStruct {
 
         private int quantityGroups;
-        public NodeCellsGroup[] Groups;
+        public NodeCellsGroup[] Groups; 
 
         public MultiStruct(int quantity) {
             quantityGroups = quantity;
@@ -19,11 +20,14 @@ namespace Sudoku.Groups {
             Groups[indexGroup].Add(cell, indexCell);
         }
 
+        public void Remove(int indexGroup, int indexCells) {
+            Groups[indexGroup].Remove(indexCells);
+        }
+
         public void ToString() {
             for (int i = 0; i < quantityGroups; i++) {
                 Groups[i].ToString();
             }
         }
-
     }
 }
