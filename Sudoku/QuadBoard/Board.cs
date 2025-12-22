@@ -24,6 +24,14 @@ namespace Sudoku.QuadBoard {
             groups.Add(cell, (lineIndex / 3) * 3 + columnIndex / 3, (lineIndex % 3) * 3 + columnIndex % 3);
         }
 
+        public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
+            bool linesCan = lines.CanAdd(cell, lineIndex);
+            bool columnsCan = columns.CanAdd(cell, columnIndex);
+
+            bool groupsCan = groups.CanAdd(cell, (lineIndex / 3) * 3 + columnIndex / 3);
+            return linesCan && columnsCan && groupsCan;
+        }
+
         public void RemoveCell(int lineIndex, int columnIndex) {
             lines.Remove(lineIndex, columnIndex);
             columns.Remove(columnIndex, lineIndex);
@@ -32,7 +40,8 @@ namespace Sudoku.QuadBoard {
 
         public void LineToString() => lines.ToString();
         public void ColumnToString() => columns.ToString();
-        public void GroupToString() => groups.ToString();
+        public void GroupsToString() => groups.ToString();
+
 
     }
 }

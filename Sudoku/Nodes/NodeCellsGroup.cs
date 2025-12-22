@@ -23,6 +23,9 @@ namespace Sudoku.Nodes {
                 usedNumbers.Add(cell.Number);
             }
         }
+        public bool CanAdd(NodeCell cell) {
+            return !usedNumbers.Contains(cell.Number);            
+        }     
 
         public void Remove(int index) {
             if (Cells[index].Number != 0) {

@@ -16,12 +16,10 @@ namespace Sudoku.Groups {
             }
         }
 
-        public void Add(NodeCell cell, int indexGroup, int indexCell) {
-            Groups[indexGroup].Add(cell, indexCell);
-        }
-
-        public void Remove(int indexGroup, int indexCells) {
-            Groups[indexGroup].Remove(indexCells);
+        public void Add(NodeCell cell, int indexGroup, int indexCell) => Groups[indexGroup].Add(cell, indexCell);        
+        public void Remove(int indexGroup, int indexCell) => Groups[indexGroup].Remove(indexCell);
+        public bool CanAdd(NodeCell cell, int indexGroup) {
+            return Groups[indexGroup].CanAdd(cell);
         }
 
         public void ToString() {
