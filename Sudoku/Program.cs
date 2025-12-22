@@ -1,32 +1,46 @@
 ﻿using Sudoku.Groups;
-using Sudoku.QuadBoard;
 using Sudoku.Nodes;
+using Sudoku.QuadBoard;
 using System;
+using System.Data.Common;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Sudoku{
     internal static class Program {
 
         public static int quantity = 9;
-        public static Board board = new Board(quantity);
+        public static Board Board = new Board(quantity);
+        public static Benchmark Benchmark = new Benchmark(quantity);
+
+        public static NodeCell cell;
         private static void Main() {
 
-            for (int i = 0; i < quantity; i++) {
-                for (int j = 0; j < quantity; j++) {
-                    var cell = new NodeCell();
-                    byte value = (byte)((i * 3 + i / 3 + j) % (quantity) + 1);
-                    
-                    cell.Number = value;
-                    board.AddCell(cell,  i, j);
+            GenerateFirstLine();
 
-                }
+            Benchmark.SetAll(Board.lines, Board.columns, Board.groups);
+            Benchmark.Compare();
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Board.LineToString();
+            Console.WriteLine();
+            Board.ColumnToString();
+            Console.WriteLine();
+            Board.GroupsToString();
+            Console.WriteLine();
+
+
+        }
+
+        public static void GenerateFirstLine() {
+            RandomNumberCell.Initialize(quantity);
+            for (int column = 0; column < quantity; column++) {
+                NodeCell cell = new NodeCell();
+                cell.Number = RandomNumberCell.RandomNumber();
+
+                Board.AddCell(cell,0, column);
             }
-
-            board.LineToString();
-            Console.WriteLine();
-            board.ColumnToString();
-            Console.WriteLine();
-            board.GroupToString();
-
         }
 
 
