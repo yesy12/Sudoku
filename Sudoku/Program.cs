@@ -16,6 +16,8 @@ namespace Sudoku{
         private static void Main() {
 
             GenerateFirstLine();
+            for (int row = 1; row < quantity; row++)
+                AddOnCell(row);
 
             Benchmark.SetAll(Board.lines, Board.columns, Board.groups);
             Benchmark.Compare();
@@ -41,6 +43,24 @@ namespace Sudoku{
 
                 Board.AddCell(cell,0, column);
             }
+        }
+        public static bool AddOnCell(int row, int column = 0) {
+            if (column >= quantity) return true;
+
+            for (byte number = 1; number <= quantity; number++) {
+                NodeCell cell = new NodeCell();
+                cell.Number = number;
+
+                if (Board.CanAdd(cell, row, column)) {
+                    Board.AddCell(cell, row, column);
+
+                    if (AddOnCell(row, column + 1))
+                        return true;
+
+                    Board.RemoveCell(row, column);
+                }
+            }
+            return false;
         }
 
 
