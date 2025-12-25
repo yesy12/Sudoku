@@ -10,9 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NovaPasta\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
-    <None Remove="NovaPasta\**" />
+    <None Include="Groups\GroupGroupsTest.cs" />
   </ItemGroup>
 
   <ItemGroup>
