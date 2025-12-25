@@ -26,20 +26,20 @@ namespace Sudoku {
 
         public int Compare() {
             int score_Quantity = 0;
-            NodeCellsGroup lineGroup = new NodeCellsGroup(lines.Groups.Length);
-            NodeCellsGroup columnGroup = new NodeCellsGroup(columns.Groups.Length);
-            NodeCellsGroup groupGroup = new NodeCellsGroup(groups.Groups.Length);
+            NodeCellsGroup lineGroup = new NodeCellsGroup(lines.GetQuantity());
+            NodeCellsGroup columnGroup = new NodeCellsGroup(columns.GetQuantity());
+            NodeCellsGroup groupGroup = new NodeCellsGroup(groups.GetQuantity());
 
-            for (int i = 0; i < lines.Groups.Length; i++) {
-                lineGroup = lines.Groups[i];
+            for (int i = 0; i < lines.GetQuantity(); i++) {
+                lineGroup = lines.GetGroups[i];                
 
-                for (int k = 0; k < columns.Groups.Length; k++) { 
+                for (int k = 0; k < columns.GetQuantity(); k++) { 
                     int groupIndex = (i / 3) * 3 + (k / 3);
                     int cellInGroupIndex = (i % 3) * 3 + (k % 3);
 
                     byte lineCellVal = lineGroup.Cells[k].Number;
-                    byte columnCellVal = columns.Groups[k].Cells[i].Number;
-                    byte groupColumnCellVal = groups.Groups[groupIndex].Cells[cellInGroupIndex].Number;
+                    byte columnCellVal = columns.GetGroups[k].Cells[i].Number;                    
+                    byte groupColumnCellVal = groups.GetGroups[groupIndex].Cells[cellInGroupIndex].Number;
 
                     if (lineCellVal == 0)
                         score_Quantity += SCORE_NOT_GENERATED;

@@ -37,7 +37,7 @@ public class ColumnGroupsTest{
 
     [Test]
     public void ColumnsTestQuantity(){
-        Assert.That(columns.Groups.Length, Is.EqualTo(quantity));
+        Assert.That(columns.GetQuantity(), Is.EqualTo(quantity));
     }
 
     [TestCase(0)]
@@ -50,12 +50,12 @@ public class ColumnGroupsTest{
     [TestCase(7)]
     [TestCase(8)]
     public void ColumnsTestAdd(int index) {
-        for (int i = 0; i < columns.Groups.Length; i++) {
+        for (int i = 0; i < columns.GetQuantity(); i++) {
             Cell = new NodeCell();
             Cell.Number = (byte)(i+1);
             columns.Add(Cell, index, i);            
         }
-        NodeCell[] Cells = columns.Groups[index].Cells; 
+        NodeCell[] Cells = columns.GetGroups[index].Cells; 
         for (byte i = 0; i < quantity; i++) {
             Assert.That(Cells[i].Number, Is.EqualTo(i + 1));
         }
@@ -72,9 +72,9 @@ public class ColumnGroupsTest{
         foreach (byte numberRemoved in arrayNumberRemoved)
             columns.Remove(0, numberRemoved - 1);
 
-        for (int i = 0; i < columns.Groups[0].Cells.Length; i++)
+        for (int i = 0; i < columns.GetGroups[0].Cells.Length; i++)
             foreach (byte numberRemoved in arrayNumberRemoved)                
-                Assert.That(columns.Groups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));                 
+                Assert.That(columns.GetGroups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));                 
     }
 
     [TestCase(1, false)]
