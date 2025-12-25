@@ -3,10 +3,14 @@
 namespace Sudoku.Test;
 
 public class TestNodeCellAssertError{
-    NodeCell cell;
+    private NodeCell cell;
+    private NodeCell cell2;
+    private byte maxNumber;
     [SetUp]
     public void Setup() {
+        maxNumber = 5;
         cell = new NodeCell();
+        cell2 = new NodeCell(maxNumber);
     }
 
     [TestCase(100)]
@@ -168,6 +172,24 @@ public class TestNodeCellAssertError{
     public void NodeCell_SetAssertError(byte number) {
         Assert.Throws<ArgumentOutOfRangeException>(() => {
             cell.Number = number;
+        });
+    }
+
+    [TestCase(6)]
+    [TestCase(7)]
+    [TestCase(8)]
+    [TestCase(9)]
+    [TestCase(10)]
+    [TestCase(11)]
+    [TestCase(12)]
+    [TestCase(13)]
+    [TestCase(14)]
+    [TestCase(15)]
+    [TestCase(16)]
+    [TestCase(17)]
+    public void NodeCell_SetAssertErrorConstructor(byte number) {
+        Assert.Throws<ArgumentOutOfRangeException>(()=> { 
+            cell2.Number = number; 
         });
     }
 }
