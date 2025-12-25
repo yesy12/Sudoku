@@ -27,7 +27,7 @@ public class BoardTest {
     [TestCase(6, 3, 4)]
     [TestCase(3, 1, 1)]
     public void BoardTest_InsertSameNodeCellInstance(byte number, int lineIndex, int columnIndex) {
-        cell = new NodeCell() { Number = number };
+        cell = new NodeCell((byte)quantity) { Number = number };
         board.AddCell(cell, lineIndex, columnIndex);
 
         int groupIndex = (lineIndex / root) * root + (columnIndex / root);
@@ -45,7 +45,7 @@ public class BoardTest {
     [TestCase(5, 6, 4)]
     [TestCase(6, 2, 8)]
     public void BoardTest_CalculateCorrectGroupIndex(byte number, int lineIndex, int columnIndex) {
-        cell = new NodeCell() { Number = number };
+        cell = new NodeCell((byte)quantity) { Number = number };
         int expectedGroup = (lineIndex / root) * root + (columnIndex / root);
 
         board.AddCell(cell, lineIndex, columnIndex);
@@ -63,8 +63,8 @@ public class BoardTest {
     [TestCase(7, 0, 0, 8, false)]
     [TestCase(7, 1, 0, 1, false)]
     public void BoardTest_CanAddSameNumbers(byte number, int lineIndex, int columnIndex, int nextColumnIndex, bool expectedBool) {
-        cell = new NodeCell() { Number = number };
-        cell2 = new NodeCell() { Number = number };
+        cell = new NodeCell((byte)quantity) { Number = number };
+        cell2 = new NodeCell((byte)quantity) { Number = number };
 
         board.AddCell(cell, lineIndex, columnIndex);
         Assert.That(board.CanAdd(cell2, lineIndex, nextColumnIndex), Is.EqualTo(expectedBool));
@@ -76,7 +76,7 @@ public class BoardTest {
     [TestCase(2, 2, 1, 0)]
     [TestCase(4, 0, 7, 0)]
     public void BoardTest_RemoveNumbers(byte number, int lineIndex, int columnIndex, byte expectedNumber) {
-        cell = new NodeCell() { Number = number};
+        cell = new NodeCell((byte)quantity) { Number = number};
 
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);

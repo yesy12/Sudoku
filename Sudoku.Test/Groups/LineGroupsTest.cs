@@ -51,7 +51,7 @@ public class LineGroupsTest {
     [TestCase(8)]
     public void LinesTestAdd(int index) {
         for (int i = 0; i < lines.GetQuantity(); i++) {
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = (byte)(i + 1);
             lines.Add(Cell, index, i);
         }
@@ -64,7 +64,7 @@ public class LineGroupsTest {
     [TestCaseSource(nameof(GenerateMin_Max_RemovingNumbers))]
     public void LinesTestRemove(byte minNumber, byte maxNumber, byte[] arrayNumberRemoved) {
         for (byte i = minNumber; i <= maxNumber; i++) {
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = i;
             lines.Add(Cell, 0, i - 1);
         }
@@ -87,7 +87,7 @@ public class LineGroupsTest {
     [TestCase(8, false)]
     [TestCase(9, false)]
     public void LineTestCanAdd_FALSE(byte number, bool expectedBool) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         lines.Add(Cell, 0, number - 1);
         Assert.That(lines.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
@@ -103,7 +103,7 @@ public class LineGroupsTest {
     [TestCase(8, true)]
     [TestCase(9, true)]
     public void LineTestCanAdd_True(byte number, bool expectedBool) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         Assert.That(lines.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
     }

@@ -9,7 +9,7 @@ public class TestNodeCellAssertError{
     [SetUp]
     public void Setup() {
         maxNumber = 5;
-        cell = new NodeCell();
+        cell = new NodeCell(maxNumber);
         cell2 = new NodeCell(maxNumber);
     }
 

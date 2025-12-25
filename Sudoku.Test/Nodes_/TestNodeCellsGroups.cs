@@ -31,7 +31,7 @@ public class TestNodeCellsGroups{
     [Test]
     public void TestAddCellsToGroup() {
         for (byte i = 1; i < quantity + 1; i++) {
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = i;
             Group.Add(Cell, i - 1);
         }
@@ -50,7 +50,7 @@ public class TestNodeCellsGroups{
     [TestCase(8, false)]
     [TestCase(9, false)]
     public void TestNodeCellsGroupsCanAdd_False(byte number, bool expectedReturn) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         Group.Add(Cell, 0);
         Assert.That(Group.CanAdd(Cell), Is.EqualTo(expectedReturn));
@@ -66,7 +66,7 @@ public class TestNodeCellsGroups{
     [TestCase(8, true)]
     [TestCase(9, true)]
     public void TestNodeCellsGroupsCanAdd_True(byte number, bool expectedReturn) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         Assert.That(Group.CanAdd(Cell), Is.EqualTo(expectedReturn));
     }
@@ -81,7 +81,7 @@ public class TestNodeCellsGroups{
     [TestCase(8)]
     [TestCase(9)]
     public void TestNodeCellsGroupsRemove(byte number) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         Group.Add(Cell, 0);
         Group.Remove(0);
@@ -92,7 +92,7 @@ public class TestNodeCellsGroups{
     [TestCaseSource(nameof(MinMaxAndRemovedNumber))]
     public void TestNodeCellsGroupsRemovingNumber(byte minNumber, byte maxNumber, byte[] arrayNumbersRemoved) {
         for (byte i = minNumber; i <= maxNumber; i++){
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = i;
             Group.Add(Cell, i-1);
         }

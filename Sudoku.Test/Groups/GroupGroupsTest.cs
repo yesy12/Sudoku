@@ -51,7 +51,7 @@ public class GroupGroupsTest{
     [TestCase(8)]
     public void GroupsTestAdd(int index) {
         for (int i = 0; i < groups.GetQuantity(); i++) {
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = (byte)(i+1);
             groups.Add(Cell, index, i);            
         }
@@ -64,7 +64,7 @@ public class GroupGroupsTest{
     [TestCaseSource(nameof(GenerateMin_Max_RemovingNumbers))]
     public void GroupsTestRemove(byte minNumber, byte maxNumber, byte[] arrayNumberRemoved) {
         for (byte i = minNumber; i <= maxNumber; i++) {
-            Cell = new NodeCell();
+            Cell = new NodeCell((byte)quantity);
             Cell.Number = i;
             groups.Add(Cell, 0, i - 1);
         }
@@ -87,7 +87,7 @@ public class GroupGroupsTest{
     [TestCase(8, false)]
     [TestCase(9, false)]    
     public void GroupTestCanAdd_FALSE(byte number, bool expectedBool) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         groups.Add(Cell, 0, number - 1);
         Assert.That(groups.CanAdd(Cell,0), Is.EqualTo(expectedBool));
@@ -103,7 +103,7 @@ public class GroupGroupsTest{
     [TestCase(8, true)]
     [TestCase(9, true)]
     public void GroupTestCanAdd_True(byte number, bool expectedBool) {
-        Cell = new NodeCell();
+        Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         Assert.That(groups.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
     }

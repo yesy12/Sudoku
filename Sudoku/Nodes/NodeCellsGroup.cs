@@ -8,12 +8,11 @@ namespace Sudoku.Nodes {
         private int quantity;
 
         public NodeCellsGroup(int quantityCells) {
-            quantity = quantityCells;
-            Cells = new NodeCell[quantity];
+            this.quantity = quantityCells;
+            Cells = new NodeCell[quantityCells];
             usedNumbers = new HashSet<byte>();
-
-            for (int i = 0; i < quantity; i++) 
-                Cells[i] = new NodeCell();           
+            for (int i = 0; i < quantityCells; i++)
+                Cells[i] = new NodeCell((byte)quantityCells);
         }
         public void Add(NodeCell cell, int index) {
             if (!usedNumbers.Contains(cell.Number)) {
@@ -25,11 +24,11 @@ namespace Sudoku.Nodes {
         public void Remove(int index) {
             if (Cells[index].Number != 0) {
                 usedNumbers.Remove(Cells[index].Number);
-                Cells[index] = new NodeCell(); 
+                Cells[index] = new NodeCell((byte)quantity); 
             }
         }
         public void ToString() {
-            for (int i = 0; i < quantity; i++) {
+            for (int i = 0; i < Cells.Length; i++) {
                 Console.Write($"{Cells[i].Number} | ");
             }
             Console.Write(usedNumbers.Sum(a => a));

@@ -8,19 +8,16 @@ using System.Security.Cryptography.X509Certificates;
 namespace Sudoku{
     internal static class Program {
 
-        public static byte quantity = 9;
+        public static byte quantity = 16;
         public static Board Board = new Board(quantity);
-        public static Benchmark Benchmark = new Benchmark(quantity);
-
-        public static NodeCell cell;
         private static void Main() {
 
             GenerateFirstLine();
             for (int row = 1; row < quantity; row++)
                 AddOnCell(row);
 
-            Benchmark.SetAll(Board.lines, Board.columns, Board.groups);
-            Benchmark.Compare();
+            //Benchmark.SetAll(Board.lines, Board.columns, Board.groups);
+            //Benchmark.Compare();
 
             Console.WriteLine();
             Console.WriteLine();
@@ -38,7 +35,7 @@ namespace Sudoku{
         public static void GenerateFirstLine() {
             RandomNumberCell.Initialize(quantity);
             for (int column = 0; column < quantity; column++) {
-                NodeCell cell = new NodeCell();
+                NodeCell cell = new NodeCell(quantity);
                 cell.Number = RandomNumberCell.RandomNumber();
 
                 Board.AddCell(cell,0, column);
@@ -48,7 +45,7 @@ namespace Sudoku{
             if (column >= quantity) return true;
 
             for (byte number = 1; number <= quantity; number++) {
-                NodeCell cell = new NodeCell();
+                NodeCell cell = new NodeCell(quantity);
                 cell.Number = number;
 
                 if (Board.CanAdd(cell, row, column)) {

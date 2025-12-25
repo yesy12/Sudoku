@@ -2,11 +2,13 @@
 using Sudoku.Nodes;
 
 public class TestNodeCell{
-    NodeCell Cell;
+    private int quantity;
+    private NodeCell Cell;
 
     [SetUp]
     public void Setup() {
-        Cell = new NodeCell();
+        quantity = 9;
+        Cell = new NodeCell((byte)quantity);
     }
     [TestCase(1)]
     [TestCase(2)]

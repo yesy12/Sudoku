@@ -3,16 +3,14 @@ using System;
 
 namespace Sudoku.Groups {
     public abstract class MultiStruct {
-        private int quantityGroups;
         private NodeCellsGroup[] Groups;
         public IReadOnlyList<NodeCellsGroup> GetGroups => this.Groups;
 
         public MultiStruct(int quantity) {
-            quantityGroups = quantity;
-            Groups = new NodeCellsGroup[quantityGroups];
+            Groups = new NodeCellsGroup[quantity];
 
-            for (int i = 0; i < quantityGroups; i++) 
-                Groups[i] = new NodeCellsGroup(quantityGroups);           
+            for (int i = 0; i < quantity; i++) 
+                Groups[i] = new NodeCellsGroup(quantity);           
         }
 
         public void Add(NodeCell cell, int indexGroup, int indexCell) => Groups[indexGroup].Add(cell, indexCell);        
@@ -21,7 +19,7 @@ namespace Sudoku.Groups {
         public byte GetQuantity() => (byte)Groups.Length;
 
         public void ToString() {
-            for (int i = 0; i < quantityGroups; i++) {
+            for (int i = 0; i < GetQuantity(); i++) {
                 Groups[i].ToString();
             }
         }
