@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace Sudoku{
     internal static class Program {
 
-        public static int quantity = 9;
+        public static byte quantity = 9;
         public static Board Board = new Board(quantity);
         public static Benchmark Benchmark = new Benchmark(quantity);
 
