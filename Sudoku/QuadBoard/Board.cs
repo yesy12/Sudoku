@@ -29,7 +29,7 @@ namespace Sudoku.QuadBoard {
             bool linesCan = lines.CanAdd(cell, lineIndex);
             bool columnsCan = columns.CanAdd(cell, columnIndex);
 
-            bool groupsCan = groups.CanAdd(cell, (lineIndex / 3) * 3 + columnIndex / 3);
+            bool groupsCan = groups.CanAdd(cell, lineIndexGroup(lineIndex, columnIndex));
             return linesCan && columnsCan && groupsCan;
         }
 
