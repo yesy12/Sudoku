@@ -5,14 +5,15 @@ using System.Text.RegularExpressions;
 
 namespace Sudoku.QuadBoard {
     public class Board {
-
         private int quantity;
         public Lines lines;
         public Columns columns;
         public GroupsStuct groups;
+        private int root;
          
         public Board(int quantity) {
             this.quantity = quantity;
+            root = (int)Math.Sqrt(quantity);
             lines = new Lines(quantity);
             columns = new Columns(quantity);
             groups = new GroupsStuct(quantity);
@@ -21,7 +22,7 @@ namespace Sudoku.QuadBoard {
         public void AddCell(NodeCell cell, int lineIndex, int columnIndex) {
             lines.Add(cell, lineIndex, columnIndex);
             columns.Add(cell, columnIndex, lineIndex);
-            groups.Add(cell, (lineIndex / 3) * 3 + columnIndex / 3, (lineIndex % 3) * 3 + columnIndex % 3);
+            groups.Add(cell, lineIndexGroup(lineIndex, columnIndex), columnIndexGroup(lineIndex, columnIndex));
         }
 
         public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
@@ -35,13 +36,15 @@ namespace Sudoku.QuadBoard {
         public void RemoveCell(int lineIndex, int columnIndex) {
             lines.Remove(lineIndex, columnIndex);
             columns.Remove(columnIndex, lineIndex);
-            groups.Remove( (lineIndex / 3) * 3 + columnIndex / 3, (lineIndex % 3) * 3 + columnIndex % 3);
+            groups.Remove( lineIndexGroup(lineIndex,columnIndex), columnIndexGroup(lineIndex,columnIndex) );
         }
+
+        internal int lineIndexGroup(int lineIndex, int columnIndex) => (lineIndex / root) * root + columnIndex / root;
+        internal int columnIndexGroup(int lineIndex, int columnIndex) => (lineIndex % root) * root + columnIndex % root;
 
         public void LineToString() => lines.ToString();
         public void ColumnToString() => columns.ToString();
         public void GroupsToString() => groups.ToString();
-
-
+        public int GetQuantity() => quantity;
     }
 }
