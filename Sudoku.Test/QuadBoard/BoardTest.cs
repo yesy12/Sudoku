@@ -18,9 +18,7 @@ public class BoardTest {
 
     [Test]
     public void BoardTest_MultiStructQuantitys() {
-        Assert.That(board.LineQuantity(), Is.EqualTo(quantity));
-        Assert.That(board.ColumnQuantity(), Is.EqualTo(quantity));
-        Assert.That(board.GroupQuantity(), Is.EqualTo(quantity));
+        Assert.That(board.GetQuantity(), Is.EqualTo(quantity));
     }
 
     [TestCase(5, 0, 0)]
