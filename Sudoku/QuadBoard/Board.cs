@@ -19,12 +19,17 @@ namespace Sudoku.QuadBoard {
             groups = new GroupsStuct(quantity);
         }
 
+        public void Clear() {
+            lines = new Lines(quantity);
+            columns = new Columns(quantity);
+            groups = new GroupsStuct(quantity);
+        }
+
         public void AddCell(NodeCell cell, int lineIndex, int columnIndex) {
             lines.Add(cell, lineIndex, columnIndex);
             columns.Add(cell, columnIndex, lineIndex);
             groups.Add(cell, lineIndexGroup(lineIndex, columnIndex), columnIndexGroup(lineIndex, columnIndex));
         }
-
         public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
             bool linesCan = lines.CanAdd(cell, lineIndex);
             bool columnsCan = columns.CanAdd(cell, columnIndex);

@@ -10,13 +10,15 @@ namespace Sudoku.Generates {
         public ClassicSudokuGenerator(int quantity) => this.quantity = quantity;            
 
         public void Generate(Board board) {
-            GenerateFirstLine(board);            
-            
-            for(int i = 1; i < quantity; i++) 
-                AddOnCell(board, i);
+            board.Clear();
+
+            GenerateFirstLine(board);
+
+            if (!FillFromRow(board, 1))
+                throw new Exception("Failed to generate sudoku");
         }
 
-        public void GenerateFirstLine(Board Board) {
+        private void GenerateFirstLine(Board Board) {
             RandomNumberCell.Initialize((byte)quantity);
             for (int column = 0; column < quantity; column++) {
                 NodeCell cell = new NodeCell((byte)quantity) { Number = RandomNumberCell.RandomNumber()};
@@ -24,16 +26,27 @@ namespace Sudoku.Generates {
             }
         }
 
-        public bool AddOnCell(Board Board, int row, int column = 0) {
-            if (column >= quantity) return true;
-            for (byte number = 1; number <= quantity; number++) {
-                NodeCell cell = new NodeCell((byte)quantity) { Number = number};                
+        private bool FillFromRow(Board board, int row) {
+            if (row >= quantity)
+                return true;
+            return AddOnCell(board, row);
+        }
 
-                if (Board.CanAdd(cell, row, column)) {
-                    Board.AddCell(cell, row, column);
-                    if (AddOnCell(Board, row, column + 1))
+        private bool AddOnCell(Board board, int row, int column = 0) {
+            if (column >= quantity) return FillFromRow(board, row + 1);
+
+            var numbers = Enumerable.Range(1, quantity).Select(n => (byte)n).OrderBy(_ => Random.Shared.Next());
+
+            foreach (var number in numbers) {
+                NodeCell cell = new NodeCell((byte)quantity) { Number = number };
+
+                if (board.CanAdd(cell, row, column)) {
+                    board.AddCell(cell, row, column);
+
+                    if (AddOnCell(board, row, column + 1))
                         return true;
-                    Board.RemoveCell(row, column);
+
+                    board.RemoveCell(row, column);
                 }
             }
             return false;
