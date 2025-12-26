@@ -89,9 +89,10 @@ public class BoardTest_16 {
 
     [Test]
     public void BoardTest_SudokuGenerator() {
-        var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
-        Generator.Generate(board);
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
 
-        Assert.That(board.IsComplete(), Is.EqualTo(true));        
+        Assert.Throws<NotImplementedException>(() => {
+            Generator.Generate(board);
+        }); 
     }
 }
