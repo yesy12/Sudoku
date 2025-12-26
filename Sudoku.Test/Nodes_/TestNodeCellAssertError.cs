@@ -186,7 +186,14 @@ public class TestNodeCellAssertError{
     [TestCase(14)]
     [TestCase(15)]
     [TestCase(16)]
-    [TestCase(17)]
+    [TestCase(18)]
+    [TestCase(19)]
+    [TestCase(20)]
+    [TestCase(21)]
+    [TestCase(22)]
+    [TestCase(23)]
+    [TestCase(24)]
+    [TestCase(25)]
     public void NodeCell_SetAssertErrorConstructor(byte number) {
         Assert.Throws<ArgumentOutOfRangeException>(()=> { 
             cell2.Number = number; 
