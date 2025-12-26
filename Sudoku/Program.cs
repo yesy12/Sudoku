@@ -10,14 +10,12 @@ namespace Sudoku{
 
         public static byte quantity = 16;
         public static Board Board = new Board(quantity);
+        
         private static void Main() {
 
             GenerateFirstLine();
             for (int row = 1; row < quantity; row++)
                 AddOnCell(row);
-
-            //Benchmark.SetAll(Board.lines, Board.columns, Board.groups);
-            //Benchmark.Compare();
 
             Console.WriteLine();
             Console.WriteLine();
@@ -28,14 +26,12 @@ namespace Sudoku{
             Console.WriteLine();
             Board.GroupsToString();
             Console.WriteLine();
-
-
         }
 
         public static void GenerateFirstLine() {
             RandomNumberCell.Initialize(quantity);
             for (int column = 0; column < quantity; column++) {
-                NodeCell cell = new NodeCell(quantity);
+                NodeCell cell = new NodeCell((byte)quantity);
                 cell.Number = RandomNumberCell.RandomNumber();
 
                 Board.AddCell(cell,0, column);
@@ -45,7 +41,7 @@ namespace Sudoku{
             if (column >= quantity) return true;
 
             for (byte number = 1; number <= quantity; number++) {
-                NodeCell cell = new NodeCell(quantity);
+                NodeCell cell = new NodeCell((byte)quantity);
                 cell.Number = number;
 
                 if (Board.CanAdd(cell, row, column)) {
