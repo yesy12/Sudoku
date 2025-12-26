@@ -28,7 +28,6 @@ namespace Sudoku.QuadBoard {
         public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
             bool linesCan = lines.CanAdd(cell, lineIndex);
             bool columnsCan = columns.CanAdd(cell, columnIndex);
-
             bool groupsCan = groups.CanAdd(cell, lineIndexGroup(lineIndex, columnIndex));
             return linesCan && columnsCan && groupsCan;
         }
