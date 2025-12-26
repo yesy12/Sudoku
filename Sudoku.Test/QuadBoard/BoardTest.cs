@@ -1,9 +1,11 @@
-﻿using Sudoku.Nodes;
+﻿using Sudoku.Generates;
+using Sudoku.Nodes;
 using Sudoku.QuadBoard;
 namespace Sudoku.Test;
 
 public class BoardTest {
     private int quantity;
+    private int switchMethodFunctionGenerator;
     private Board board;
     private NodeCell cell;
     private NodeCell cell2;
@@ -12,6 +14,7 @@ public class BoardTest {
     [SetUp]
     public void Setup() {
         quantity = 9;
+        switchMethodFunctionGenerator = 16;
         root = (int)Math.Sqrt(quantity);
         board = new Board(quantity);
     }
@@ -82,5 +85,13 @@ public class BoardTest {
         board.RemoveCell(lineIndex, columnIndex);
         Assert.That(board.lines.GetGroups[lineIndex].Cells[columnIndex].Number, Is.EqualTo(expectedNumber));
         Assert.That(board.CanAdd(cell, lineIndex, columnIndex), Is.True);
+    }
+
+    [Test]
+    public void BoardTest_SudokuGenerator() {
+        var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
+        Generator.Generate(board);
+
+        Assert.That(board.IsComplete(), Is.EqualTo(true));        
     }
 }

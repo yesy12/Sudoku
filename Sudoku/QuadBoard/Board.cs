@@ -45,5 +45,17 @@ namespace Sudoku.QuadBoard {
         public void ColumnToString() => columns.ToString();
         public void GroupsToString() => groups.ToString();
         public int GetQuantity() => quantity;
+
+        public bool IsComplete() {                        
+            return structIsNotEqual((NodeCellsGroup[])lines.GetGroups);
+        }
+
+        internal bool structIsNotEqual(NodeCellsGroup[] elements) {
+            foreach (NodeCellsGroup element in elements)
+                foreach (var cells in element.Cells)
+                    if (cells.Number == 0)
+                        return false;
+            return true;
+        }
     }
 }
