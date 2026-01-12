@@ -1,6 +1,9 @@
-﻿using Sudoku.Generates;
+﻿using Sudoku.Difficulty;
+using Sudoku.Generates;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
+using Sudoku.Solvers;
+using Sudoku.Difficulty.group;
 namespace Sudoku.Test;
 
 public class BoardTest_04 {
@@ -10,6 +13,9 @@ public class BoardTest_04 {
     private NodeCell cell;
     private NodeCell cell2;
     private int root;
+    private static ISudokuSolver solver;
+    private static IDifficulty difficulty;
+    private static SudokuPuzzleGenerator spg;
 
     [SetUp]
     public void Setup() {
@@ -17,6 +23,9 @@ public class BoardTest_04 {
         switchMethodFunctionGenerator = 16;
         root = (int)Math.Sqrt(quantity);
         board = new Board(quantity);
+        solver = new SudokuSolver(quantity);
+        spg = new SudokuPuzzleGenerator(solver, quantity);
+        difficulty = new DifficultyEasy();
     }
 
     [Test]
@@ -94,4 +103,60 @@ public class BoardTest_04 {
 
         Assert.That(board.IsComplete(), Is.EqualTo(true));        
     }
+
+    [Test]
+    public void BoardTest_Clone() {
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
+        Generator.Generate(board);
+        Board clone = board.Clone();
+
+        Assert.That(clone.lines.GetQuantity, Is.EqualTo(quantity));
+
+        for (int line = 0; line < quantity; line++)
+            for (int col = 0; col < quantity; col++)
+                Assert.That(clone.lines.GetGroups[line].Cells[col].Number, Is.EqualTo(board.lines.GetGroups[line].Cells[col].Number));
+    }
+
+    [Test]
+    public void BoardTest_Clone_Removed() {
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
+        Generator.Generate(board);
+
+        ushort MinRemovableNumbers = difficulty.MinRemovableNumbers(quantity);
+        ushort MaxRemovableNumbers = difficulty.MaxRemovableNumbers(quantity);
+        ushort removed = 0;
+
+        spg.RemoveNumbers(board, difficulty);
+        Assert.That(board.QuantityRemoved(), Is.InRange(MinRemovableNumbers, MaxRemovableNumbers));
+    }
+
+    [Test]
+    public void BoardTest_UniqueSolution_AfterRemove() {
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
+        Generator.Generate(board);
+
+        spg.RemoveNumbers(board, difficulty);
+
+        Board clone = board.Clone();
+        Assert.That(solver.HasUniqueSolution(clone), Is.True);
+    }
+
+    [TestCase(typeof(DifficultyVeryEasy))]
+    [TestCase(typeof(DifficultyEasy))]
+    [TestCase(typeof(DifficultyMedium))]   
+    [TestCase(typeof(DifficultyHard))]
+    [TestCase(typeof(DifficultyExpert))]
+    public void BoardTest_TestRemovedNumber(Type difficult_) {
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
+        Generator.Generate(board);
+
+        ushort MinRemovableNumbers = difficulty.MinRemovableNumbers(quantity);
+        ushort MaxRemovableNumbers = difficulty.MaxRemovableNumbers(quantity);
+
+        spg.RemoveNumbers(board, difficulty);
+        Assert.That(board.QuantityRemoved(), Is.InRange(MinRemovableNumbers, MaxRemovableNumbers));
+    }
+
+
+
 }
