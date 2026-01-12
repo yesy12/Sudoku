@@ -2,28 +2,30 @@
 using Sudoku.Groups;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
+using Sudoku.Difficulty.group;
+using Sudoku.Difficulty;
 using System;
-using System.Data.Common;
-using System.Security.Cryptography.X509Certificates;
+using Sudoku.Solvers;
 
 namespace Sudoku{
     internal static class Program {
 
-        public static byte quantity = 16;
+        public static byte quantity = 9;
         private static byte switchMethodFunctionGenerator = 16;
         public static Board Board = new Board(quantity);
+        private static ISudokuSolver solver = new SudokuSolver(quantity);
+        private static SudokuPuzzleGenerator spg = new SudokuPuzzleGenerator(solver, quantity);
+        private static IDifficulty Difficulty = new DifficultyEasy();
 
         private static void Main() {
             var generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
             generator.Generate(Board);
 
+            spg.RemoveNumbers(Board, Difficulty);
+
             Console.WriteLine();
             Board.LineToString();
-            Console.WriteLine();
-            Board.ColumnToString();
-            Console.WriteLine();
-            Board.GroupsToString();
-            Console.WriteLine();
+       
         }
     }
 }
