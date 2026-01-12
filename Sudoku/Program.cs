@@ -15,9 +15,12 @@ namespace Sudoku{
         public static Board Board = new Board(quantity);
         private static ISudokuSolver solver = new SudokuSolver(quantity);
         private static SudokuPuzzleGenerator spg = new SudokuPuzzleGenerator(solver, quantity);
-        private static IDifficulty Difficulty = new DifficultyEasy();
+        private static IDifficulty Difficulty;
 
         private static void Main() {
+            DifficultyLevel difficultyLevel = DifficultyLevel.Hard;
+            Difficulty = DifficultyFactory.Create(difficultyLevel);
+
             var generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
             generator.Generate(Board);
 
