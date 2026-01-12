@@ -25,6 +25,31 @@ namespace Sudoku.QuadBoard {
             groups = new GroupsStuct(quantity);
         }
 
+        public Board Clone() {
+            Board clone = new Board(quantity);
+
+            for (int line = 0; line < quantity; line++)
+                for (int column = 0; column < quantity; column++) {
+                    byte number = (byte)lines.GetGroups[line].Cells[column].Number;
+                    NodeCell cell = new NodeCell((byte)quantity);
+
+                    if (number != 0)
+                        cell.Number = number;                                         
+
+                    clone.AddCell(cell, line, column);
+                }
+            return clone;
+        }
+
+        public int QuantityRemoved() {
+            int removed = 0;
+            for (int line = 0; line < quantity; line++)
+                for (int col = 0; col < quantity; col++)
+                    if (lines.GetGroups[line].Cells[col].Number == 0)
+                        removed++;
+            return removed;
+        }
+
         public void AddCell(NodeCell cell, int lineIndex, int columnIndex) {
             lines.Add(cell, lineIndex, columnIndex);
             columns.Add(cell, columnIndex, lineIndex);
@@ -36,7 +61,6 @@ namespace Sudoku.QuadBoard {
             bool groupsCan = groups.CanAdd(cell, lineIndexGroup(lineIndex, columnIndex));
             return linesCan && columnsCan && groupsCan;
         }
-
         public void RemoveCell(int lineIndex, int columnIndex) {
             lines.Remove(lineIndex, columnIndex);
             columns.Remove(columnIndex, lineIndex);
@@ -51,9 +75,7 @@ namespace Sudoku.QuadBoard {
         public void GroupsToString() => groups.ToString();
         public int GetQuantity() => quantity;
 
-        public bool IsComplete() {                        
-            return structIsNotEqual((NodeCellsGroup[])lines.GetGroups);
-        }
+        public bool IsComplete() => structIsNotEqual((NodeCellsGroup[])lines.GetGroups);
 
         internal bool structIsNotEqual(NodeCellsGroup[] elements) {
             foreach (NodeCellsGroup element in elements)
