@@ -27,7 +27,7 @@ namespace Sudoku.Solvers {
                         for (byte num = 1; num <= quantity; num++) {
                             NodeCell cell = new NodeCell((byte)quantity) { Number = num };
 
-                            if (board.CanAdd(cell, line, col)) {
+                            if (board.CanAdd(num, line, col)) {
                                 board.AddCell(cell, line, col);
                                 Solve(board);
                                 board.RemoveCell(line, col);

@@ -17,7 +17,7 @@
                 usedNumbers.Add(cell.Number);
             }
         }
-        public bool CanAdd(NodeCell cell) => !usedNumbers.Contains(cell.Number);
+        public bool CanAdd(byte number) => !usedNumbers.Contains(number);
         public void Remove(int index) {
             if (Cells[index].Number != 0) {
                 usedNumbers.Remove(Cells[index].Number);

@@ -64,10 +64,10 @@ namespace Sudoku.QuadBoard {
             columns.Add(cell, columnIndex, lineIndex);
             groups.Add(cell, LineIndexGroup(lineIndex, columnIndex), ColumnIndexGroup(lineIndex, columnIndex));
         }
-        public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
-            bool linesCan = lines.CanAdd(cell, lineIndex);
-            bool columnsCan = columns.CanAdd(cell, columnIndex);
-            bool groupsCan = groups.CanAdd(cell, LineIndexGroup(lineIndex, columnIndex));
+        public bool CanAdd(byte number, int lineIndex, int columnIndex) {
+            bool linesCan = lines.CanAdd(number, lineIndex);
+            bool columnsCan = columns.CanAdd(number, columnIndex);
+            bool groupsCan = groups.CanAdd(number, LineIndexGroup(lineIndex, columnIndex));
             return linesCan && columnsCan && groupsCan;
         }
         public void RemoveCell(int lineIndex, int columnIndex) {
