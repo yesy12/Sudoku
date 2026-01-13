@@ -1,12 +1,10 @@
 ﻿using Sudoku.Nodes;
 using Sudoku.QuadBoard;
-using System;
-using System.Collections.Generic;
 
 namespace Sudoku.Generates {
     public class ClassicSudokuGenerator : ISudokuGenerator {
         public ushort? seed { get; }
-        private int quantity;
+        private readonly int quantity;
         private readonly Random random;
 
         public ClassicSudokuGenerator(int quantity) {

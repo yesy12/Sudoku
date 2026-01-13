@@ -1,5 +1,4 @@
 ﻿using Sudoku.Difficulty;
-using System;
 
 namespace Sudoku.Test {
     internal class DifficultyFactoryTest {

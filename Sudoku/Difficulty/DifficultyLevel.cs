@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Difficulty {
+﻿namespace Sudoku.Difficulty {
     public enum DifficultyLevel {
         VeryEasy,
         Easy,

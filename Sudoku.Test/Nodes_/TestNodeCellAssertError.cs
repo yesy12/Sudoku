@@ -2,7 +2,7 @@
 
 namespace Sudoku.Test;
 
-public class TestNodeCellAssertError{
+public class TestNodeCellAssertError {
     private NodeCell cell;
     private NodeCell cell2;
     private byte maxNumber;
@@ -195,8 +195,8 @@ public class TestNodeCellAssertError{
     [TestCase(24)]
     [TestCase(25)]
     public void NodeCell_SetAssertErrorConstructor(byte number) {
-        Assert.Throws<ArgumentOutOfRangeException>(()=> { 
-            cell2.Number = number; 
+        Assert.Throws<ArgumentOutOfRangeException>(() => {
+            cell2.Number = number;
         });
     }
 }

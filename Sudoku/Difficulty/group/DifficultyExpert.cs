@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Difficulty.group {
+﻿namespace Sudoku.Difficulty.group {
     public class DifficultyExpert : DifficultBase {
         public DifficultyExpert() : base(
             min4: 13, max4: 13,

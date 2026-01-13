@@ -3,11 +3,11 @@ using Sudoku.Nodes;
 
 namespace Sudoku.QuadBoard {
     public class Board {
-        private int quantity;
+        private readonly int quantity;
         private Lines lines;
         private Columns columns;
         private GroupsStuct groups;
-        private int root;
+        private readonly int root;
 
         public Board(int quantity) {
             this.quantity = quantity;
@@ -29,7 +29,7 @@ namespace Sudoku.QuadBoard {
 
             for (int line = 0; line < quantity; line++)
                 for (int column = 0; column < quantity; column++) {
-                    byte number = (byte)lines.Groups[line].Cells[column].Number;
+                    byte number = lines.Groups[line].Cells[column].Number;
                     NodeCell cell = new NodeCell((byte)quantity);
 
                     if (number != 0) {

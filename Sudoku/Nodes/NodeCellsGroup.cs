@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Sudoku.Nodes {
+﻿namespace Sudoku.Nodes {
     public class NodeCellsGroup {
         public NodeCell[] Cells;
-        private HashSet<byte> usedNumbers;
-        private int quantity;
+        private readonly HashSet<byte> usedNumbers;
+        private readonly int quantity;
 
         public NodeCellsGroup(int quantityCells) {
             this.quantity = quantityCells;
@@ -24,9 +21,9 @@ namespace Sudoku.Nodes {
         public void Remove(int index) {
             if (Cells[index].Number != 0) {
                 usedNumbers.Remove(Cells[index].Number);
-                Cells[index] = new NodeCell((byte)quantity); 
+                Cells[index] = new NodeCell((byte)quantity);
             }
         }
-        public ushort SumUsedNumbersCount() =>(ushort)usedNumbers.Sum(value => value);        
+        public ushort SumUsedNumbersCount() => (ushort)usedNumbers.Sum(value => value);
     }
 }

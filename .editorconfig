@@ -1,0 +1,78 @@
+# =========================================
+# EditorConfig - Sudoku Project (Core Logic)
+# =========================================
+
+root = true
+
+# -----------------------------------------
+# Configurações gerais
+# -----------------------------------------
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = false
+indent_style = space
+indent_size = 4
+
+# -----------------------------------------
+# C# files
+# -----------------------------------------
+[*.cs]
+
+# ========== Organização / Limpeza ==========
+dotnet_remove_unnecessary_usings = true
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# ========== Qualidade de Código ==========
+dotnet_code_quality_unused_parameters = all
+dotnet_style_readonly_field = true:suggestion
+
+# Diagnósticos importantes
+dotnet_diagnostic.IDE0005.severity = suggestion   # using desnecessário
+dotnet_diagnostic.IDE0051.severity = suggestion   # membro privado não usado
+dotnet_diagnostic.IDE0060.severity = suggestion   # parâmetro não usado
+
+# ========== Estilo de Tipos ==========
+# Evita "var" excessivo em lógica
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# ========== Expressões (com moderação) ==========
+csharp_style_throw_expression = true:suggestion
+csharp_style_prefer_simple_boolean_expressions = true:suggestion
+
+# NÃO forçar expression-bodied (mantém legibilidade)
+csharp_style_expression_bodied_methods = false
+csharp_style_expression_bodied_properties = false
+csharp_style_expression_bodied_constructors = false
+
+# ========== Estrutura (NÃO refatorar arquitetura) ==========
+csharp_style_prefer_top_level_statements = false
+csharp_style_prefer_primary_constructors = false
+csharp_style_implicit_object_creation_when_type_is_apparent = false
+dotnet_style_prefer_collection_expression = never
+
+# Namespace estável (não mover automaticamente)
+csharp_style_namespace_declarations = block_scoped
+dotnet_style_namespace_match_folder = false
+csharp_using_directive_placement = outside_namespace
+
+# ========== Segurança ==========
+csharp_prefer_braces = true
+
+# ========== Testes (NUnit / xUnit friendly) ==========
+# Evita falsos positivos em testes
+dotnet_diagnostic.IDE0044.severity = silent  # readonly em campos mutáveis de teste
+
+# ========== Formatação ==========
+csharp_new_line_before_open_brace = none
+csharp_indent_block_contents = true
+csharp_indent_case_contents = true
+csharp_space_after_comma = true
+csharp_space_around_binary_operators = before_and_after
+
+# =========================================
+# Fim do EditorConfig
+# =========================================

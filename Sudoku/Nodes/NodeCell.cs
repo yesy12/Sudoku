@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Nodes {
     public class NodeCell {
         private byte number;
-        private byte maxNumber;
+        private readonly byte maxNumber;
         private bool isFixed;
 
         public NodeCell(byte maxNumber) {

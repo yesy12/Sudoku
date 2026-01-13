@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Difficulty {
+﻿namespace Sudoku.Difficulty {
     public abstract class DifficultBase : IDifficulty {
 
         protected readonly Dictionary<int, (ushort Min, ushort Max)> ranges;

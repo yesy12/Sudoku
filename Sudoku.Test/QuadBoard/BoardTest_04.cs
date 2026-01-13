@@ -1,9 +1,9 @@
 ﻿using Sudoku.Difficulty;
+using Sudoku.Difficulty.group;
 using Sudoku.Generates;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
 using Sudoku.Solvers;
-using Sudoku.Difficulty.group;
 namespace Sudoku.Test;
 
 public class BoardTest_04 {
@@ -88,7 +88,7 @@ public class BoardTest_04 {
     [TestCase(2, 2, 1, 0)]
     [TestCase(4, 0, 1, 0)]
     public void BoardTest_RemoveNumbers(byte number, int lineIndex, int columnIndex, byte expectedNumber) {
-        cell = new NodeCell((byte)quantity) { Number = number};
+        cell = new NodeCell((byte)quantity) { Number = number };
 
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);
@@ -98,10 +98,10 @@ public class BoardTest_04 {
 
     [Test]
     public void BoardTest_SudokuGenerator() {
-        var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
         Generator.Generate(board);
 
-        Assert.That(board.IsComplete(), Is.EqualTo(true));        
+        Assert.That(board.IsComplete(), Is.EqualTo(true));
     }
 
     [Test]
@@ -124,7 +124,6 @@ public class BoardTest_04 {
 
         ushort MinRemovableNumbers = difficulty.MinRemovableNumbers(quantity);
         ushort MaxRemovableNumbers = difficulty.MaxRemovableNumbers(quantity);
-        ushort removed = 0;
 
         spg.RemoveNumbers(board, difficulty);
         Assert.That(board.QuantityRemoved(), Is.InRange(MinRemovableNumbers, MaxRemovableNumbers));
@@ -143,7 +142,7 @@ public class BoardTest_04 {
 
     [TestCase(typeof(DifficultyVeryEasy))]
     [TestCase(typeof(DifficultyEasy))]
-    [TestCase(typeof(DifficultyMedium))]   
+    [TestCase(typeof(DifficultyMedium))]
     [TestCase(typeof(DifficultyHard))]
     [TestCase(typeof(DifficultyExpert))]
     public void BoardTest_TestRemovedNumber(Type difficult_) {

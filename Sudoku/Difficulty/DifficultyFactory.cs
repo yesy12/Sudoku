@@ -1,5 +1,4 @@
-﻿using System;
-using Sudoku.Difficulty.group;
+﻿using Sudoku.Difficulty.group;
 
 namespace Sudoku.Difficulty {
     public static class DifficultyFactory {

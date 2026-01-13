@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Test;
 
-public class RandomNumberTest{
+public class RandomNumberTest {
     private byte[] possibleNumbers;
 
     [TestCase(9)]
@@ -16,7 +16,7 @@ public class RandomNumberTest{
         RandomNumberCell.Initialize(numberMax);
         possibleNumbers = RandomNumberCell.GetPossibleNumbers();
         for (byte i = 1; i <= numberMax; i++)
-            Assert.That(possibleNumbers[i-1], Is.EqualTo(i));        
+            Assert.That(possibleNumbers[i - 1], Is.EqualTo(i));
     }
 
     [TestCase(1)]
@@ -67,10 +67,10 @@ public class RandomNumberTest{
         int maxNumber = 9;
         RandomNumberCell.Initialize((byte)maxNumber);
         byte[] random = new byte[maxNumber];
-        for (int i = 0; i < maxNumber; i++) 
+        for (int i = 0; i < maxNumber; i++)
             random[i] = RandomNumberCell.RandomNumber();
-        
-        possibleNumbers = RandomNumberCell.GetPossibleNumbers();        
+
+        possibleNumbers = RandomNumberCell.GetPossibleNumbers();
         for (byte i = 0; i < possibleNumbers.Length; i++)
             Assert.That(possibleNumbers[i], Is.Not.EqualTo(random[i]));
     }

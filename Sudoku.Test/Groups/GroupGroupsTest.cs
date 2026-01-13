@@ -3,7 +3,7 @@ using Sudoku.Nodes;
 
 namespace Sudoku.Test.Groups;
 
-public class GroupGroupsTest{
+public class GroupGroupsTest {
     private int quantity;
     private GroupsStuct groups;
     private NodeCell Cell;
@@ -15,7 +15,7 @@ public class GroupGroupsTest{
 
         yield return new TestCaseData(
             (byte)3, (byte)7,
-            new byte[] { 3, 4,5, 6 }
+            new byte[] { 3, 4, 5, 6 }
         ).SetName("Generate 3 to 7, Removing 3,4,5,6");
 
         yield return new TestCaseData(
@@ -25,18 +25,18 @@ public class GroupGroupsTest{
 
         yield return new TestCaseData(
             (byte)3, (byte)9,
-            new byte[] {  3, 4 }
+            new byte[] { 3, 4 }
         ).SetName("Generate 3 to 9, Removing 3,4");
     }
 
     [SetUp]
     public void Setup() {
         quantity = 9;
-        groups = new GroupsStuct(quantity);        
+        groups = new GroupsStuct(quantity);
     }
 
     [Test]
-    public void GroupsTestQuantity(){
+    public void GroupsTestQuantity() {
         Assert.That(groups.GetQuantity(), Is.EqualTo(quantity));
     }
 
@@ -52,10 +52,10 @@ public class GroupGroupsTest{
     public void GroupsTestAdd(int index) {
         for (int i = 0; i < groups.GetQuantity(); i++) {
             Cell = new NodeCell((byte)quantity);
-            Cell.Number = (byte)(i+1);
-            groups.Add(Cell, index, i);            
+            Cell.Number = (byte)(i + 1);
+            groups.Add(Cell, index, i);
         }
-        NodeCell[] Cells = groups.Groups[index].Cells; 
+        NodeCell[] Cells = groups.Groups[index].Cells;
         for (byte i = 0; i < quantity; i++) {
             Assert.That(Cells[i].Number, Is.EqualTo(i + 1));
         }
@@ -73,8 +73,8 @@ public class GroupGroupsTest{
             groups.Remove(0, numberRemoved - 1);
 
         for (int i = 0; i < groups.Groups[0].Cells.Length; i++)
-            foreach (byte numberRemoved in arrayNumberRemoved)                
-                Assert.That(groups.Groups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));                 
+            foreach (byte numberRemoved in arrayNumberRemoved)
+                Assert.That(groups.Groups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));
     }
 
     [TestCase(1, false)]
@@ -85,12 +85,12 @@ public class GroupGroupsTest{
     [TestCase(6, false)]
     [TestCase(7, false)]
     [TestCase(8, false)]
-    [TestCase(9, false)]    
+    [TestCase(9, false)]
     public void GroupTestCanAdd_FALSE(byte number, bool expectedBool) {
         Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         groups.Add(Cell, 0, number - 1);
-        Assert.That(groups.CanAdd(Cell,0), Is.EqualTo(expectedBool));
+        Assert.That(groups.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
     }
 
     [TestCase(1, true)]

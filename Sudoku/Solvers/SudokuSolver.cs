@@ -1,11 +1,10 @@
 ﻿using Sudoku.Nodes;
 using Sudoku.QuadBoard;
-using System;
 
 namespace Sudoku.Solvers {
     public class SudokuSolver : ISudokuSolver {
         private int solution;
-        private int quantity;
+        private readonly int quantity;
 
         public SudokuSolver(int quantity) {
             this.quantity = quantity;
@@ -18,11 +17,11 @@ namespace Sudoku.Solvers {
         }
 
         internal void Solve(Board board) {
-            if (solution > 1) 
+            if (solution > 1)
                 return;
 
-            for (int line = 0; line < quantity; line++) 
-                for (int col = 0; col < quantity; col++) 
+            for (int line = 0; line < quantity; line++)
+                for (int col = 0; col < quantity; col++)
 
                     if (board.GetLines()[line].Cells[col].Number == 0) {
                         for (byte num = 1; num <= quantity; num++) {
@@ -33,12 +32,12 @@ namespace Sudoku.Solvers {
                                 Solve(board);
                                 board.RemoveCell(line, col);
 
-                                if (solution > 1) 
+                                if (solution > 1)
                                     return;
                             }
                         }
                         return;
-                    }                            
+                    }
 
             solution++;
         }

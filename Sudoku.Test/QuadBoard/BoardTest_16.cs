@@ -79,7 +79,7 @@ public class BoardTest_16 {
     [TestCase(2, 2, 1, 0)]
     [TestCase(4, 0, 7, 0)]
     public void BoardTest_RemoveNumbers(byte number, int lineIndex, int columnIndex, byte expectedNumber) {
-        cell = new NodeCell((byte)quantity) { Number = number};
+        cell = new NodeCell((byte)quantity) { Number = number };
 
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);
@@ -93,6 +93,6 @@ public class BoardTest_16 {
 
         Assert.Throws<NotImplementedException>(() => {
             Generator.Generate(board);
-        }); 
+        });
     }
 }

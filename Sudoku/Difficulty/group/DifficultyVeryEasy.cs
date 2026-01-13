@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Difficulty.group  {
+﻿namespace Sudoku.Difficulty.group {
     public class DifficultyVeryEasy : DifficultBase {
         public DifficultyVeryEasy() : base(
             min4: 6, max4: 7,

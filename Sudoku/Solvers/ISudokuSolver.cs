@@ -1,5 +1,4 @@
-﻿using System;
-using Sudoku.QuadBoard;
+﻿using Sudoku.QuadBoard;
 namespace Sudoku.Solvers {
     public interface ISudokuSolver {
         bool HasUniqueSolution(Board board);

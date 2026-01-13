@@ -1,9 +1,9 @@
 ﻿using Sudoku.Difficulty;
+using Sudoku.Difficulty.group;
 using Sudoku.Generates;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
 using Sudoku.Solvers;
-using Sudoku.Difficulty.group;
 namespace Sudoku.Test;
 
 public class BoardTest_09 {
@@ -13,7 +13,7 @@ public class BoardTest_09 {
     private NodeCell cell;
     private NodeCell cell2;
     private int root;
-    private static ISudokuSolver solver ;
+    private static ISudokuSolver solver;
     private static IDifficulty difficulty;
     private static SudokuPuzzleGenerator spg;
 
@@ -88,7 +88,7 @@ public class BoardTest_09 {
     [TestCase(2, 2, 1, 0)]
     [TestCase(4, 0, 7, 0)]
     public void BoardTest_RemoveNumbers(byte number, int lineIndex, int columnIndex, byte expectedNumber) {
-        cell = new NodeCell((byte)quantity) { Number = number};
+        cell = new NodeCell((byte)quantity) { Number = number };
 
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);
@@ -98,17 +98,17 @@ public class BoardTest_09 {
 
     [Test]
     public void BoardTest_SudokuGenerator() {
-        var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
         Generator.Generate(board);
 
-        Assert.That(board.IsComplete(), Is.EqualTo(true));        
+        Assert.That(board.IsComplete(), Is.EqualTo(true));
     }
 
     [Test]
     public void BoardTest_Clone() {
-        var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
+        var Generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
         Generator.Generate(board);
-        Board clone = board.Clone();        
+        Board clone = board.Clone();
         Assert.That(clone.GetQuantity(), Is.EqualTo(quantity));
 
         for (int line = 0; line < quantity; line++)
@@ -129,7 +129,7 @@ public class BoardTest_09 {
 
         for (int line = 0; line < quantity; line++)
             for (int col = 0; col < quantity; col++)
-                if(board.GetLines()[line].Cells[col].Number == 0)
+                if (board.GetLines()[line].Cells[col].Number == 0)
                     removed++;
 
         Assert.That(removed, Is.InRange(MinRemovableNumbers, MaxRemovableNumbers));
