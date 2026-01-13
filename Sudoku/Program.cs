@@ -1,8 +1,5 @@
 ﻿using Sudoku.Generates;
-using Sudoku.Groups;
-using Sudoku.Nodes;
 using Sudoku.QuadBoard;
-using Sudoku.Difficulty.group;
 using Sudoku.Difficulty;
 using System;
 using Sudoku.Solvers;
@@ -16,7 +13,7 @@ namespace Sudoku{
         private static Benchmark benchmark = new Benchmark(quantity);
         private static ISudokuSolver solver = new SudokuSolver(quantity);
         private static SudokuPuzzleGenerator spg = new SudokuPuzzleGenerator(solver, quantity);
-        private static ISudokuGenerator generator = SudokuGeneratorFactory.Create(quantity, switchMethodFunctionGenerator);
+        private static ISudokuGenerator generator = SudokuGeneratorFactory.Create(quantity,194, switchMethodFunctionGenerator);
         private static IDifficulty Difficulty;
 
         private static void Main() {
@@ -24,10 +21,10 @@ namespace Sudoku{
             Difficulty = DifficultyFactory.Create(difficultyLevel);
 
             generator.Generate(Board);
-            benchmark.SetAll(Board);
+            //benchmark.SetAll(Board);
 
-            spg.RemoveNumbers(Board, Difficulty);
-            Console.WriteLine(benchmark.Compare());
+            //spg.RemoveNumbers(Board, Difficulty);
+            //Console.WriteLine(benchmark.Compare());
 
             Console.WriteLine();
 
