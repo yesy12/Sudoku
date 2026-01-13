@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Test.Nodes_.Quantity;
 using Sudoku.Nodes;
 
-public class TestNodeCell_25{
+public class TestNodeCell_25 {
     private int quantity;
     private NodeCell Cell;
 
@@ -39,5 +39,23 @@ public class TestNodeCell_25{
         Cell.Number = number;
 
         Assert.That(number, Is.EqualTo(Cell.Number));
+    }
+
+    [Test]
+    public void NodeCell_IsFixed_Update() {
+        Cell.Number = 1;
+        Cell.IsFixed = true;
+
+        Assert.That(Cell.IsFixed, Is.True);
+    }
+
+    [Test]
+    public void NodeCell_IsFixed_UpdateValue() {
+        Cell.Number = 1;
+        Cell.IsFixed = true;
+
+        Assert.Throws<ArgumentException>(() => {
+            Cell.Number = 2;
+        });
     }
 }

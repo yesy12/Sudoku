@@ -1,7 +1,5 @@
 ﻿using Sudoku.Groups;
 using Sudoku.Nodes;
-using System;
-using System.Text.RegularExpressions;
 
 namespace Sudoku.QuadBoard {
     public class Board {
@@ -10,7 +8,7 @@ namespace Sudoku.QuadBoard {
         private Columns columns;
         private GroupsStuct groups;
         private int root;
-         
+
         public Board(int quantity) {
             this.quantity = quantity;
             root = (int)Math.Sqrt(quantity);
@@ -19,13 +17,14 @@ namespace Sudoku.QuadBoard {
             groups = new GroupsStuct(quantity);
         }
 
+        #region Struct
         public void Clear() {
             lines = new Lines(quantity);
             columns = new Columns(quantity);
             groups = new GroupsStuct(quantity);
         }
 
-        public Board Clone() {
+        public Board Clone(bool IsFixed = false) {
             Board clone = new Board(quantity);
 
             for (int line = 0; line < quantity; line++)
@@ -33,14 +32,62 @@ namespace Sudoku.QuadBoard {
                     byte number = (byte)lines.Groups[line].Cells[column].Number;
                     NodeCell cell = new NodeCell((byte)quantity);
 
-                    if (number != 0)
-                        cell.Number = number;                                         
+                    if (number != 0) {
+                        cell.Number = number;
+                        if (IsFixed)
+                            cell.IsFixed = true;
+                    }
 
                     clone.AddCell(cell, line, column);
                 }
             return clone;
         }
 
+        public void LockedCells() {
+            foreach (NodeCellsGroup line in lines.Groups)
+                foreach (NodeCell cell in line.Cells)
+                    cell.IsFixed = cell.Number != 0;
+        }
+        internal bool StructIsNotEqual(NodeCellsGroup[] elements) {
+            foreach (NodeCellsGroup element in elements)
+                foreach (var cells in element.Cells)
+                    if (cells.Number == 0)
+                        return false;
+            return true;
+        }
+
+        #endregion
+
+        #region Cell
+        public void AddCell(NodeCell cell, int lineIndex, int columnIndex) {
+            lines.Add(cell, lineIndex, columnIndex);
+            columns.Add(cell, columnIndex, lineIndex);
+            groups.Add(cell, LineIndexGroup(lineIndex, columnIndex), ColumnIndexGroup(lineIndex, columnIndex));
+        }
+        public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
+            bool linesCan = lines.CanAdd(cell, lineIndex);
+            bool columnsCan = columns.CanAdd(cell, columnIndex);
+            bool groupsCan = groups.CanAdd(cell, LineIndexGroup(lineIndex, columnIndex));
+            return linesCan && columnsCan && groupsCan;
+        }
+        public void RemoveCell(int lineIndex, int columnIndex) {
+            lines.Remove(lineIndex, columnIndex);
+            columns.Remove(columnIndex, lineIndex);
+            groups.Remove(LineIndexGroup(lineIndex, columnIndex), ColumnIndexGroup(lineIndex, columnIndex));
+        }
+
+        internal int LineIndexGroup(int lineIndex, int columnIndex) => (lineIndex / root) * root + columnIndex / root;
+        internal int ColumnIndexGroup(int lineIndex, int columnIndex) => (lineIndex % root) * root + columnIndex % root;
+        #endregion
+
+        #region Get Values
+        public IReadOnlyList<NodeCellsGroup> GetLines() => lines.Groups;
+        public IReadOnlyList<NodeCellsGroup> GetColumns() => columns.Groups;
+        public IReadOnlyList<NodeCellsGroup> GetGroups() => groups.Groups;
+
+        public bool IsComplete() => StructIsNotEqual((NodeCellsGroup[])lines.Groups);
+
+        public int GetQuantity() => quantity;
         public int QuantityRemoved() {
             int removed = 0;
             for (int line = 0; line < quantity; line++)
@@ -49,41 +96,6 @@ namespace Sudoku.QuadBoard {
                         removed++;
             return removed;
         }
-
-        public void AddCell(NodeCell cell, int lineIndex, int columnIndex) {
-            lines.Add(cell, lineIndex, columnIndex);
-            columns.Add(cell, columnIndex, lineIndex);
-            groups.Add(cell, lineIndexGroup(lineIndex, columnIndex), columnIndexGroup(lineIndex, columnIndex));
-        }
-        public bool CanAdd(NodeCell cell, int lineIndex, int columnIndex) {
-            bool linesCan = lines.CanAdd(cell, lineIndex);
-            bool columnsCan = columns.CanAdd(cell, columnIndex);
-            bool groupsCan = groups.CanAdd(cell, lineIndexGroup(lineIndex, columnIndex));
-            return linesCan && columnsCan && groupsCan;
-        }
-        public void RemoveCell(int lineIndex, int columnIndex) {
-            lines.Remove(lineIndex, columnIndex);
-            columns.Remove(columnIndex, lineIndex);
-            groups.Remove( lineIndexGroup(lineIndex,columnIndex), columnIndexGroup(lineIndex,columnIndex) );
-        }
-
-        internal int lineIndexGroup(int lineIndex, int columnIndex) => (lineIndex / root) * root + columnIndex / root;
-        internal int columnIndexGroup(int lineIndex, int columnIndex) => (lineIndex % root) * root + columnIndex % root;
-
-        public IReadOnlyList<NodeCellsGroup> GetLines() => lines.Groups;
-        public IReadOnlyList<NodeCellsGroup> GetColumns() => columns.Groups;
-        public IReadOnlyList<NodeCellsGroup> GetGroups() => groups.Groups;
-
-        public int GetQuantity() => quantity;
-
-        public bool IsComplete() => structIsNotEqual((NodeCellsGroup[])lines.Groups);
-
-        internal bool structIsNotEqual(NodeCellsGroup[] elements) {
-            foreach (NodeCellsGroup element in elements)
-                foreach (var cells in element.Cells)
-                    if (cells.Number == 0)
-                        return false;
-            return true;
-        }
+        #endregion
     }
 }
