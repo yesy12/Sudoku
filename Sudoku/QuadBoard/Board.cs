@@ -30,7 +30,7 @@ namespace Sudoku.QuadBoard {
 
             for (int line = 0; line < quantity; line++)
                 for (int column = 0; column < quantity; column++) {
-                    byte number = (byte)lines.GetGroups[line].Cells[column].Number;
+                    byte number = (byte)lines.Groups[line].Cells[column].Number;
                     NodeCell cell = new NodeCell((byte)quantity);
 
                     if (number != 0)
@@ -45,7 +45,7 @@ namespace Sudoku.QuadBoard {
             int removed = 0;
             for (int line = 0; line < quantity; line++)
                 for (int col = 0; col < quantity; col++)
-                    if (lines.GetGroups[line].Cells[col].Number == 0)
+                    if (lines.Groups[line].Cells[col].Number == 0)
                         removed++;
             return removed;
         }
@@ -70,13 +70,13 @@ namespace Sudoku.QuadBoard {
         internal int lineIndexGroup(int lineIndex, int columnIndex) => (lineIndex / root) * root + columnIndex / root;
         internal int columnIndexGroup(int lineIndex, int columnIndex) => (lineIndex % root) * root + columnIndex % root;
 
-        public NodeCellsGroup[] GetLines() => (NodeCellsGroup[])lines.GetGroups;
-        public NodeCellsGroup[] GetColumns() => (NodeCellsGroup[])columns.GetGroups;
-        public NodeCellsGroup[] GetGroups() => (NodeCellsGroup[])groups.GetGroups;
+        public IReadOnlyList<NodeCellsGroup> GetLines() => lines.Groups;
+        public IReadOnlyList<NodeCellsGroup> GetColumns() => columns.Groups;
+        public IReadOnlyList<NodeCellsGroup> GetGroups() => groups.Groups;
 
         public int GetQuantity() => quantity;
 
-        public bool IsComplete() => structIsNotEqual((NodeCellsGroup[])lines.GetGroups);
+        public bool IsComplete() => structIsNotEqual((NodeCellsGroup[])lines.Groups);
 
         internal bool structIsNotEqual(NodeCellsGroup[] elements) {
             foreach (NodeCellsGroup element in elements)

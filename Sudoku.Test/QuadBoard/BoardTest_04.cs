@@ -110,7 +110,7 @@ public class BoardTest_04 {
         Generator.Generate(board);
         Board clone = board.Clone();
 
-        Assert.That(clone.GetLines().Length, Is.EqualTo(quantity));
+        Assert.That(clone.GetQuantity(), Is.EqualTo(quantity));
 
         for (int line = 0; line < quantity; line++)
             for (int col = 0; col < quantity; col++)

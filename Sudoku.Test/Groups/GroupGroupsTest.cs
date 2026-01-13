@@ -55,7 +55,7 @@ public class GroupGroupsTest{
             Cell.Number = (byte)(i+1);
             groups.Add(Cell, index, i);            
         }
-        NodeCell[] Cells = groups.GetGroups[index].Cells; 
+        NodeCell[] Cells = groups.Groups[index].Cells; 
         for (byte i = 0; i < quantity; i++) {
             Assert.That(Cells[i].Number, Is.EqualTo(i + 1));
         }
@@ -72,9 +72,9 @@ public class GroupGroupsTest{
         foreach (byte numberRemoved in arrayNumberRemoved)
             groups.Remove(0, numberRemoved - 1);
 
-        for (int i = 0; i < groups.GetGroups[0].Cells.Length; i++)
+        for (int i = 0; i < groups.Groups[0].Cells.Length; i++)
             foreach (byte numberRemoved in arrayNumberRemoved)                
-                Assert.That(groups.GetGroups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));                 
+                Assert.That(groups.Groups[0].Cells[i].Number, Is.Not.EqualTo(numberRemoved));                 
     }
 
     [TestCase(1, false)]

@@ -23,9 +23,9 @@ namespace Sudoku {
         }
 
         public void SetAll(Board board) {
-            lines.setGroup(board.GetLines());
-            columns.setGroup(board.GetColumns());
-            groups.setGroup(board.GetGroups());
+            //lines.setGroup(board.GetLines());
+            //columns.setGroup(board.GetColumns());
+            //groups.setGroup(board.GetGroups());
         }
 
         public int Compare() {
@@ -35,15 +35,15 @@ namespace Sudoku {
             NodeCellsGroup groupGroup = new NodeCellsGroup(quantity);
 
             for (int i = 0; i < quantity; i++) {
-                lineGroup = lines.GetGroups[i];                
+                lineGroup = lines.Groups[i];                
 
                 for (int k = 0; k < quantity; k++) { 
                     int groupIndex = (i / root) * root + (k / root);
                     int cellInGroupIndex = (i % root) * root + (k % root);
 
                     byte lineCellVal = lineGroup.Cells[k].Number;
-                    byte columnCellVal = columns.GetGroups[k].Cells[i].Number;                    
-                    byte groupColumnCellVal = groups.GetGroups[groupIndex].Cells[cellInGroupIndex].Number;
+                    byte columnCellVal = columns.Groups[k].Cells[i].Number;                    
+                    byte groupColumnCellVal = groups.Groups[groupIndex].Cells[cellInGroupIndex].Number;
 
                     if (lineCellVal == 0)
                         score_Quantity += SCORE_NOT_GENERATED;
