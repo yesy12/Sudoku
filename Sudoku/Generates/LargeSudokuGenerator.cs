@@ -1,5 +1,5 @@
-﻿using Sudoku.QuadBoard;
-
+using Sudoku.QuadBoard;
+using System;
 namespace Sudoku.Generates {
     public class LargeSudokuGenerator : ISudokuGenerator {
         public ushort? seed { get; }

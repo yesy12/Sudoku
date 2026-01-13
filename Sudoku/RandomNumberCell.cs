@@ -1,4 +1,7 @@
-﻿namespace Sudoku {
+using System;
+using System.Collections.Generic;
+
+namespace Sudoku {
     public static class RandomNumberCell {
         private static List<byte> possibleNumbers = new List<byte>();
         private static readonly Random rand = new Random();

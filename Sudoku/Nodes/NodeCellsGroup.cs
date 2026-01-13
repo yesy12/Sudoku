@@ -1,4 +1,5 @@
-﻿namespace Sudoku.Nodes {
+using System.Collections.Generic;
+namespace Sudoku.Nodes {
     public class NodeCellsGroup {
         public NodeCell[] Cells;
         private readonly HashSet<byte> usedNumbers;

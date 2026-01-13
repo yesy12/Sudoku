@@ -1,6 +1,7 @@
-﻿using Sudoku.Difficulty;
+using Sudoku.Difficulty;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
+using System;
 
 namespace Sudoku.Solvers {
     public class SudokuPuzzleGenerator {

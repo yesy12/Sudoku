@@ -1,5 +1,6 @@
-﻿using Sudoku.Nodes;
+using Sudoku.Nodes;
 using Sudoku.QuadBoard;
+using System;
 
 namespace Sudoku.Generates {
     public class ClassicSudokuGenerator : ISudokuGenerator {
@@ -58,7 +59,7 @@ namespace Sudoku.Generates {
             foreach (var number in numbers) {
                 NodeCell cell = new NodeCell((byte)quantity) { Number = number };
 
-                if (board.CanAdd(cell, row, column)) {
+                if (board.CanAdd(number, row, column)) {
                     board.AddCell(cell, row, column);
 
                     if (AddOnCell(board, row, column + 1))

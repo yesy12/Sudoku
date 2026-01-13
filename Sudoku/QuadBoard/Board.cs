@@ -1,5 +1,7 @@
-﻿using Sudoku.Groups;
+using Sudoku.Groups;
 using Sudoku.Nodes;
+using System.Collections.Generic;
+using System;
 
 namespace Sudoku.QuadBoard {
     public class Board {

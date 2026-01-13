@@ -1,4 +1,5 @@
-﻿using Sudoku.Nodes;
+using Sudoku.Nodes;
+using System.Collections.Generic;
 
 namespace Sudoku.Groups {
     public abstract class MultiStruct {
