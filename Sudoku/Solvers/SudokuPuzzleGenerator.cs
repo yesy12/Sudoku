@@ -24,8 +24,8 @@ namespace Sudoku.Solvers {
 
             while (removed < toRemove && attempts < maxAttempts) {
                 int line = random.Next(0, quantity);
-                int col = random.Next(0, quantity);
-                NodeCell cell = board.lines.GetGroups[line].Cells[col];
+                int col = random.Next(0, quantity); 
+                NodeCell cell = board.GetLines()[line].Cells[col];
 
                 if (cell.Number == 0)
                     continue;

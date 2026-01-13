@@ -11,12 +11,6 @@
 
         public static byte[] GetPossibleNumbers() => possibleNumbers.ToArray();    
 
-        public static void PrintPossibleNumbers() {
-            for (int i = 0; i < possibleNumbers.Count; i++)
-                Console.Write($"{possibleNumbers[i]}");
-            Console.WriteLine();
-        }
-
         public static byte RandomNumber() {
             int index = rand.Next(0, possibleNumbers.Count);
             byte number = possibleNumbers[index];

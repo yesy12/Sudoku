@@ -27,12 +27,6 @@ namespace Sudoku.Nodes {
                 Cells[index] = new NodeCell((byte)quantity); 
             }
         }
-        public void ToString() {
-            for (int i = 0; i < Cells.Length; i++) {
-                Console.Write($"{Cells[i].Number} | ");
-            }
-            Console.Write(usedNumbers.Sum(a => a));
-            Console.WriteLine();
-        }
+        public ushort SumUsedNumbersCount() =>(ushort)usedNumbers.Sum(value => value);        
     }
 }

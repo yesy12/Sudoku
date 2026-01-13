@@ -45,9 +45,9 @@ public class BoardTest_09 {
         int groupIndex = (lineIndex / root) * root + (columnIndex / root);
         int groupCellIndex = (lineIndex % root) * root + (columnIndex % root);
 
-        Assert.That(board.lines.GetGroups[lineIndex].Cells[columnIndex], Is.SameAs(cell));
-        Assert.That(board.columns.GetGroups[columnIndex].Cells[lineIndex], Is.SameAs(cell));
-        Assert.That(board.groups.GetGroups[groupIndex].Cells[groupCellIndex], Is.SameAs(cell));
+        Assert.That(board.GetLines()[lineIndex].Cells[columnIndex], Is.SameAs(cell));
+        Assert.That(board.GetColumns()[columnIndex].Cells[lineIndex], Is.SameAs(cell));
+        Assert.That(board.GetGroups()[groupIndex].Cells[groupCellIndex], Is.SameAs(cell));
     }
 
     [TestCase(7, 4, 5)]
@@ -61,7 +61,7 @@ public class BoardTest_09 {
         int expectedGroup = (lineIndex / root) * root + (columnIndex / root);
 
         board.AddCell(cell, lineIndex, columnIndex);
-        Assert.Contains(cell, board.groups.GetGroups[expectedGroup].Cells);
+        Assert.Contains(cell, board.GetGroups()[expectedGroup].Cells);
     }
 
 
@@ -92,7 +92,7 @@ public class BoardTest_09 {
 
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);
-        Assert.That(board.lines.GetGroups[lineIndex].Cells[columnIndex].Number, Is.EqualTo(expectedNumber));
+        Assert.That(board.GetLines()[lineIndex].Cells[columnIndex].Number, Is.EqualTo(expectedNumber));
         Assert.That(board.CanAdd(cell, lineIndex, columnIndex), Is.True);
     }
 
@@ -108,13 +108,12 @@ public class BoardTest_09 {
     public void BoardTest_Clone() {
         var Generator = SudokuGeneratorFactory.Create(quantity,switchMethodFunctionGenerator);
         Generator.Generate(board);
-        Board clone = board.Clone();
-      
-        Assert.That(clone.lines.GetQuantity, Is.EqualTo(quantity));
+        Board clone = board.Clone();        
+        Assert.That(clone.GetLines().Length, Is.EqualTo(quantity));
 
         for (int line = 0; line < quantity; line++)
             for (int col = 0; col < quantity; col++)
-                Assert.That(clone.lines.GetGroups[line].Cells[col].Number, Is.EqualTo(board.lines.GetGroups[line].Cells[col].Number));
+                Assert.That(clone.GetLines()[line].Cells[col].Number, Is.EqualTo(board.GetLines()[line].Cells[col].Number));
     }
 
     [Test]
@@ -130,7 +129,7 @@ public class BoardTest_09 {
 
         for (int line = 0; line < quantity; line++)
             for (int col = 0; col < quantity; col++)
-                if(board.lines.GetGroups[line].Cells[col].Number == 0)
+                if(board.GetLines()[line].Cells[col].Number == 0)
                     removed++;
 
         Assert.That(removed, Is.InRange(MinRemovableNumbers, MaxRemovableNumbers));

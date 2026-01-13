@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 namespace Sudoku.QuadBoard {
     public class Board {
         private int quantity;
-        public Lines lines;
-        public Columns columns;
-        public GroupsStuct groups;
+        private Lines lines;
+        private Columns columns;
+        private GroupsStuct groups;
         private int root;
          
         public Board(int quantity) {
@@ -70,9 +70,10 @@ namespace Sudoku.QuadBoard {
         internal int lineIndexGroup(int lineIndex, int columnIndex) => (lineIndex / root) * root + columnIndex / root;
         internal int columnIndexGroup(int lineIndex, int columnIndex) => (lineIndex % root) * root + columnIndex % root;
 
-        public void LineToString() => lines.ToString();
-        public void ColumnToString() => columns.ToString();
-        public void GroupsToString() => groups.ToString();
+        public NodeCellsGroup[] GetLines() => (NodeCellsGroup[])lines.GetGroups;
+        public NodeCellsGroup[] GetColumns() => (NodeCellsGroup[])columns.GetGroups;
+        public NodeCellsGroup[] GetGroups() => (NodeCellsGroup[])groups.GetGroups;
+
         public int GetQuantity() => quantity;
 
         public bool IsComplete() => structIsNotEqual((NodeCellsGroup[])lines.GetGroups);

@@ -4,8 +4,8 @@ using System;
 
 namespace Sudoku.Solvers {
     public class SudokuSolver : ISudokuSolver {
-        int solution;
-        int quantity;
+        private int solution;
+        private int quantity;
 
         public SudokuSolver(int quantity) {
             this.quantity = quantity;
@@ -24,7 +24,7 @@ namespace Sudoku.Solvers {
             for (int line = 0; line < quantity; line++) 
                 for (int col = 0; col < quantity; col++) 
 
-                    if (board.lines.GetGroups[line].Cells[col].Number == 0) {
+                    if (board.GetLines()[line].Cells[col].Number == 0) {
                         for (byte num = 1; num <= quantity; num++) {
                             NodeCell cell = new NodeCell((byte)quantity) { Number = num };
 
