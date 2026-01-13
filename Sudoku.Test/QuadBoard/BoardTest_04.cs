@@ -1,4 +1,4 @@
-﻿using Sudoku.Difficulty;
+using Sudoku.Difficulty;
 using Sudoku.Difficulty.group;
 using Sudoku.Generates;
 using Sudoku.Nodes;
@@ -79,7 +79,7 @@ public class BoardTest_04 {
         cell2 = new NodeCell((byte)quantity) { Number = number };
 
         board.AddCell(cell, lineIndex, columnIndex);
-        Assert.That(board.CanAdd(cell2, lineIndex, nextColumnIndex), Is.EqualTo(expectedBool));
+        Assert.That(board.CanAdd(cell2.Number, lineIndex, nextColumnIndex), Is.EqualTo(expectedBool));
     }
 
     [TestCase(4, 0, 0, 0)]
@@ -93,7 +93,7 @@ public class BoardTest_04 {
         board.AddCell(cell, lineIndex, columnIndex);
         board.RemoveCell(lineIndex, columnIndex);
         Assert.That(board.GetLines()[lineIndex].Cells[columnIndex].Number, Is.EqualTo(expectedNumber));
-        Assert.That(board.CanAdd(cell, lineIndex, columnIndex), Is.True);
+        Assert.That(board.CanAdd(cell.Number, lineIndex, columnIndex), Is.True);
     }
 
     [Test]

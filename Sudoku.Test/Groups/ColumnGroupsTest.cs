@@ -1,4 +1,4 @@
-﻿using Sudoku.Groups;
+using Sudoku.Groups;
 using Sudoku.Nodes;
 
 namespace Sudoku.Test.Groups;
@@ -90,7 +90,7 @@ public class ColumnGroupsTest {
         Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
         columns.Add(Cell, 0, number - 1);
-        Assert.That(columns.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
+        Assert.That(columns.CanAdd(number, 0), Is.EqualTo(expectedBool));
     }
 
     [TestCase(1, true)]
@@ -105,6 +105,6 @@ public class ColumnGroupsTest {
     public void ColumnTestCanAdd_True(byte number, bool expectedBool) {
         Cell = new NodeCell((byte)quantity);
         Cell.Number = number;
-        Assert.That(columns.CanAdd(Cell, 0), Is.EqualTo(expectedBool));
+        Assert.That(columns.CanAdd(number, 0), Is.EqualTo(expectedBool));
     }
 }
