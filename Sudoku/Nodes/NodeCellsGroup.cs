@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 namespace Sudoku.Nodes {
     public class NodeCellsGroup {
         public NodeCell[] Cells;

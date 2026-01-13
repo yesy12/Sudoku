@@ -1,3 +1,5 @@
 .vs/
-*/obj
-*/bin
+Sudoku/obj/
+Sudoku/bin/
+*/bin/*
+*/obj/

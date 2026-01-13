@@ -1,6 +1,7 @@
-﻿using Sudoku.Groups;
+using Sudoku.Groups;
 using Sudoku.Nodes;
 using Sudoku.QuadBoard;
+using System;
 
 namespace Sudoku {
     public class Benchmark {

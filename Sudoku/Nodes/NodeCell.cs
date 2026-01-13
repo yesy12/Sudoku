@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Nodes {
+
+using System;
+namespace Sudoku.Nodes {
     public class NodeCell {
         private byte number;
         private readonly byte maxNumber;
